@@ -1,6 +1,7 @@
 module.exports = {
   extends: 'airbnb',
-  plugins: ['import'],
+  plugins: ['import', 'flowtype'],
+  parser: 'babel-eslint',
   rules: {
     'flowtype/generic-spacing': 'off',
     'import/order': [
