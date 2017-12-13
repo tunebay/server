@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 
 import schema from './src/schema'
+import models from './src/models'
 
 const PORT = 4000
 const app = express()
