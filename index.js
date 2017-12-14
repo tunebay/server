@@ -2,6 +2,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import { express as voyager } from 'graphql-voyager/middleware'
 
 import schema from './src/schema'
 import models from './src/models'
@@ -12,7 +13,8 @@ const graphqlEndpoint = '/graphql'
 
 // bodyParser is needed just for POST.
 app.use(graphqlEndpoint, bodyParser.json(), graphqlExpress({ schema }))
-app.get('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }))
+app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }))
+app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }))
 
 models.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
