@@ -8,7 +8,7 @@ export default (sequelize: *, types: DataTypes) => {
     password: types.STRING,
   })
 
-  User.associate = models =>
+  User.associate = models => {
     User.belongsToMany(models.Team, {
       through: 'member',
       foreignKey: {
@@ -16,6 +16,14 @@ export default (sequelize: *, types: DataTypes) => {
         field: 'user_id',
       },
     })
+    User.belongsToMany(models.Channel, {
+      through: 'channel_member',
+      foreignKey: {
+        name: 'userId',
+        field: 'user_id',
+      },
+    })
+  }
 
   return User
 }
