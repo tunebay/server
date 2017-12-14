@@ -12,11 +12,21 @@ const app = express()
 const graphqlEndpoint = '/graphql'
 
 // bodyParser is needed just for POST.
-app.use(graphqlEndpoint, bodyParser.json(), graphqlExpress({ schema }))
+app.use(
+  graphqlEndpoint,
+  bodyParser.json(),
+  graphqlExpress({
+    schema,
+    context: {
+      models,
+    },
+  }),
+)
+
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }))
 app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }))
 
-models.sequelize.sync({ force: true }).then(() => {
+models.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log('Listning on port', PORT)
   })
