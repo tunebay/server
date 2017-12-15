@@ -15,6 +15,7 @@ export default (sequelize: *, types: DataTypes): ModelType => {
       foreignKey: {
         name: 'teamId',
         field: 'team_id',
+        allowNull: false,
       },
     })
     Channel.belongsToMany(models.User, {
@@ -22,6 +23,7 @@ export default (sequelize: *, types: DataTypes): ModelType => {
       foreignKey: {
         name: 'channelId',
         field: 'channel_id',
+        allowNull: false,
       },
     })
   }

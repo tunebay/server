@@ -4,6 +4,10 @@ type Team {
   channels: [Channel!]!
 }
 
+# type Query {
+#   allTeams: [Team!]!
+# }
+
 type Mutation {
   createTeam(name: String!): Boolean!
 }

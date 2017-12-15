@@ -5,7 +5,7 @@ import type { ModelsType, ModelType } from '../types'
 
 export default (sequelize: *, types: DataTypes): ModelType => {
   const Message = sequelize.define('message', {
-    name: { type: types.STRING, unique: true },
+    text: types.STRING,
   })
 
   Message.associate = (models: ModelsType) => {
@@ -14,12 +14,14 @@ export default (sequelize: *, types: DataTypes): ModelType => {
       foreignKey: {
         name: 'channelId',
         field: 'channel_id',
+        allowNull: false,
       },
     })
     Message.belongsTo(models.User, {
       foreignKey: {
         name: 'userId',
         field: 'user_id',
+        allowNull: false,
       },
     })
   }
