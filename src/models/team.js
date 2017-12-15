@@ -17,7 +17,10 @@ export default (sequelize: *, types: DataTypes): ModelType => {
       },
     })
     Team.belongsTo(models.User, {
-      foreignKey: 'owner',
+      foreignKey: {
+        name: 'owner',
+        allowNull: false,
+      },
     })
   }
 

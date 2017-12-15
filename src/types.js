@@ -10,6 +10,11 @@ export type ModelsType = {
   Team: ModelType,
 }
 
+export type UserType = {|
+  id: number,
+|}
+
 export type Context = {|
   models: ModelsType,
+  user: UserType,
 |}
