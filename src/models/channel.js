@@ -1,13 +1,15 @@
 // @flow
 import type { DataTypes } from 'sequelize'
 
-export default (sequelize: *, types: DataTypes) => {
+import type { ModelsType, ModelType } from '../types'
+
+export default (sequelize: *, types: DataTypes): ModelType => {
   const Channel = sequelize.define('channel', {
     name: types.STRING,
     public: types.BOOLEAN,
   })
 
-  Channel.associate = models => {
+  Channel.associate = (models: ModelsType) => {
     // 1:m
     Channel.belongsTo(models.Team, {
       foreignKey: {

@@ -1,12 +1,14 @@
 // @flow
 import type { DataTypes } from 'sequelize'
 
-export default (sequelize: *, types: DataTypes) => {
+import type { ModelsType, ModelType } from '../types'
+
+export default (sequelize: *, types: DataTypes): ModelType => {
   const Team = sequelize.define('team', {
     name: { type: types.STRING, unique: true },
   })
 
-  Team.associate = models => {
+  Team.associate = (models: ModelsType) => {
     Team.belongsToMany(models.User, {
       through: 'member',
       foreignKey: {

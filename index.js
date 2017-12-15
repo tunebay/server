@@ -5,7 +5,7 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { express as voyager } from 'graphql-voyager/middleware'
 
 import schema from './src/schema'
-import models from './src/models'
+import models, { sequelize } from './src/models'
 
 const PORT = 5000
 const app = express()
@@ -26,7 +26,7 @@ app.use(
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }))
 app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }))
 
-models.sequelize.sync().then(() => {
+sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log('Listning on port', PORT)
   })

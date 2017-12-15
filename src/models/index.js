@@ -1,28 +1,18 @@
 // @flow
-import Sequelize, { Model } from 'sequelize'
+import Sequelize from 'sequelize'
 
-const sequelize = new Sequelize('slack', 'postgres', 'postgres', {
+import type { ModelsType } from '../types'
+
+export const sequelize = new Sequelize('slack', 'postgres', 'postgres', {
   dialect: 'postgres',
   define: { underscored: true },
 })
-
-type ModelsType = {
-  User: typeof Model,
-  Channel: typeof Model,
-  Message: typeof Model,
-  Team: typeof Model,
-  sequelize: typeof sequelize,
-  Sequelize: typeof Sequelize,
-}
 
 const models: ModelsType = {
   User: sequelize.import('./user'),
   Channel: sequelize.import('./channel'),
   Message: sequelize.import('./message'),
   Team: sequelize.import('./team'),
-
-  sequelize,
-  Sequelize,
 }
 
 Object.keys(models).forEach(modelName => {
