@@ -1,0 +1,7 @@
+type Track {
+  duration: Int! # seconds
+  id: Int!
+  name: String!
+  position: Int! # position in playlist
+  price: Int
+}

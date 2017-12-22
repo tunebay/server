@@ -1,0 +1,10 @@
+type Playlist {
+  artist: User!
+  artwork: String
+  id: Int!
+  permalink: String!
+  price: Int
+  supporters: [User!]!
+  title: String!
+  tracks: [Track!]!
+}

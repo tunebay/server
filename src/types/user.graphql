@@ -1,15 +1,15 @@
 type User {
-  id: Int!
-  username: String!
-  email: String!
-  teams: [Team!]!
+  avatar: String!
+  bio: String
+  cover: String
+  id: Int
+  name: String
+  photo: String
+  playlists: [Playlist!]!
+  username: String
 }
 
 type Query {
-  getUser(id: Int!): User!
+  getUser(id: Int!, username: String!): User!
   allUsers: [User!]!
-}
-
-type Mutation {
-  createUser(username: String!, email: String!, password: String!): User!
 }
