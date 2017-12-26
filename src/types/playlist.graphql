@@ -3,8 +3,13 @@ type Playlist {
   artwork: String
   id: Int!
   permalink: String!
-  price: Int
+  price: Float
   supporters: [User!]!
   title: String!
   tracks: [Track!]!
+}
+
+type Query {
+  getPlaylist(id: Int!): Playlist!
+  allPlaylists: [Playlist!]!
 }
