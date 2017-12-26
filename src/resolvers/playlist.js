@@ -1,6 +1,7 @@
 // @flow
 import Playlist from '../database/Playlist';
 import User from '../database/User';
+import tracks from '../database/Track';
 
 export default {
   Query: {
@@ -12,5 +13,6 @@ export default {
   Playlist: {
     artist: ({ userId }: *, args: *, context: *, info: *) =>
       User.findById(userId),
+    tracks: (parent: *, args: *, context: *, info: *) => tracks,
   },
 };

@@ -12,7 +12,7 @@ const playlists = [
     id: 2,
     userId: 1,
     title: 'My Boy My Town',
-    price: 5.99,
+    price: 0.99,
     artwork:
       'https://is2-ssl.mzstatic.com/image/thumb/Music122/v4/58/6e/51/586e51d3-6175-c286-a06b-7f2d007875f2/15UMGIM65453.jpg/1200x630bb.jpg',
     permalink: 'my-boy-my-town',
