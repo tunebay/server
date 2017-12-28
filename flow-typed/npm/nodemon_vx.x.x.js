@@ -1,4 +1,4 @@
-// flow-typed signature: 295907a384e81313b8459ecfe64c63be
+// flow-typed signature: b34b5ba1519cd1f721ebfe9f6f7db209
 // flow-typed version: <<STUB>>/nodemon_v^1.12.5/flow_v0.61.0
 
 /**
@@ -79,6 +79,10 @@ declare module 'nodemon/lib/monitor/match' {
 }
 
 declare module 'nodemon/lib/monitor/run' {
+  declare module.exports: any;
+}
+
+declare module 'nodemon/lib/monitor/signals' {
   declare module.exports: any;
 }
 
@@ -179,6 +183,9 @@ declare module 'nodemon/lib/monitor/match.js' {
 }
 declare module 'nodemon/lib/monitor/run.js' {
   declare module.exports: $Exports<'nodemon/lib/monitor/run'>;
+}
+declare module 'nodemon/lib/monitor/signals.js' {
+  declare module.exports: $Exports<'nodemon/lib/monitor/signals'>;
 }
 declare module 'nodemon/lib/monitor/watch.js' {
   declare module.exports: $Exports<'nodemon/lib/monitor/watch'>;

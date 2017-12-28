@@ -1,5 +1,5 @@
-// flow-typed signature: c1e2e9294153f01f1b13524513fe0b46
-// flow-typed version: c7beb0c6f1/express_v4.16.x/flow_>=v0.32.x
+// flow-typed signature: fbc4f74b6e30dd9dbb8f4f351fb7ca3e
+// flow-typed version: cd48908401/express_v4.16.x/flow_>=v0.32.x
 
 import type { Server } from "http";
 import type { Socket } from "net";
@@ -19,7 +19,7 @@ declare type express$RequestParams = {
   [param: string]: string
 };
 
-declare class express$Request extends http$IncomingMessage {
+declare class express$Request extends http$IncomingMessage mixins express$RequestResponseBase {
   baseUrl: string;
   body: any;
   cookies: { [cookie: string]: string };
@@ -76,7 +76,7 @@ declare type express$SendFileOptions = {
   dotfiles?: "allow" | "deny" | "ignore"
 };
 
-declare class express$Response extends http$ServerResponse {
+declare class express$Response extends http$ServerResponse mixins express$RequestResponseBase {
   headersSent: boolean;
   locals: { [name: string]: mixed };
   append(field: string, value?: string): this;
