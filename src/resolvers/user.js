@@ -5,7 +5,10 @@ import Playlist from '../database/Playlist';
 export default {
   Query: {
     allUsers: (parent: *, args: *, context: *, info: *) => User.findAll(),
-    getUser: (parent: *, { id }: *, context: *, info: *) => User.findById(id),
+    getUser: (parent: *, req: *, context: *, info: *) => {
+      const { id, username } = req;
+      return id ? User.findById(id) : User.findByUsername(username);
+    },
   },
   User: {
     playlists: (parent: *, args: *, context: *, info: *) =>

@@ -47,4 +47,7 @@ export default class User {
   static findById(id) {
     return users.find(user => user.id === id);
   }
+  static findByUsername(username) {
+    return users.find(user => user.username === username);
+  }
 }
