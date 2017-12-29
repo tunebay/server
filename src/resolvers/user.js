@@ -6,8 +6,13 @@ export default {
   Query: {
     allUsers: (parent: *, args: *, context: *, info: *) => User.findAll(),
     getUser: (parent: *, req: *, context: *, info: *) => {
-      const { id, username } = req;
-      return id ? User.findById(id) : User.findByUsername(username);
+      try {
+        const { id, username } = req;
+        return id ? User.findById(id) : User.findByUsername(username);
+      } catch (e) {
+        console.log('Error', e);
+        return null;
+      }
     },
   },
   User: {

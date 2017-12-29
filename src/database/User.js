@@ -1,3 +1,4 @@
+// @flow
 const users = [
   {
     id: 1,
@@ -44,10 +45,10 @@ export default class User {
   static findAll() {
     return users;
   }
-  static findById(id) {
+  static findById(id: number) {
     return users.find(user => user.id === id);
   }
-  static findByUsername(username) {
+  static findByUsername(username: string) {
     return users.find(user => user.username === username);
   }
 }

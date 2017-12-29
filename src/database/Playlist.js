@@ -1,3 +1,4 @@
+// @flow
 const playlists = [
   {
     id: 1,
@@ -119,11 +120,11 @@ const playlists = [
 ];
 
 export default class Playlist {
-  static findAllByUserId(id) {
+  static findAllByUserId(id: number) {
     return playlists.filter(p => p.userId === id);
   }
 
-  static findById(id) {
+  static findById(id: number) {
     return playlists.find(p => p.id === id);
   }
 
