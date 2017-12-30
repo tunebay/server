@@ -13,6 +13,7 @@ export default {
   Playlist: {
     artist: ({ userId }: *, args: *, context: *, info: *) =>
       User.findById(userId),
-    tracks: (parent: *, args: *, context: *, info: *) => tracks,
+    tracks: (parent: *, args: *, context: *, info: *) =>
+      tracks.findByPlaylistId(parent.id),
   },
 };

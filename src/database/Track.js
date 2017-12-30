@@ -1,5 +1,5 @@
 // @flow
-export default [
+const tracks = [
   // 1
   {
     id: 1,
@@ -11,8 +11,8 @@ export default [
   },
   {
     id: 2,
+    playlistId: 1,
     position: 2,
-    playlistId: 3,
     name: 'Begging',
     price: 0.79,
     duration: 231,
@@ -73,4 +73,154 @@ export default [
     price: 0.79,
     duration: 190,
   },
+  {
+    id: 10,
+    position: 1,
+    playlistId: 2,
+    name: 'Come Over',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 11,
+    playlistId: 2,
+    position: 2,
+    name: 'Begging',
+    price: 0.79,
+    duration: 231,
+  },
+  {
+    id: 12,
+    playlistId: 2,
+    position: 3,
+    name: 'Finders Keepers (feat. Kojo Funds)',
+    price: 0.79,
+    duration: 224,
+  },
+  {
+    id: 13,
+    playlistId: 3,
+    position: 1,
+    name: 'Ivy',
+    price: 0.79,
+    duration: 287,
+  },
+  {
+    id: 14,
+    playlistId: 4,
+    position: 1,
+    name: 'Low Key',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 15,
+    playlistId: 4,
+    position: 2,
+    name: 'Roses',
+    price: 0.79,
+    duration: 231,
+  },
+  {
+    id: 16,
+    playlistId: 4,
+    position: 3,
+    name: 'Weapon',
+    price: 0.79,
+    duration: 224,
+  },
+  {
+    id: 17,
+    playlistId: 5,
+    position: 1,
+    name: 'Passionfruit',
+    price: 0.79,
+    duration: 287,
+  },
+  {
+    id: 18,
+    playlistId: 5,
+    position: 2,
+    name: 'Finders Keepers (feat. Kojo Funds, Burna Boy & Don-E)[Remix]',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 19,
+    position: 3,
+    playlistId: 5,
+    name: 'Finders Keepers (feat. Kojo Funds, Burna Boy & Don-E)[Remix]',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 21,
+    position: 1,
+    playlistId: 6,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 22,
+    position: 1,
+    playlistId: 7,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 23,
+    position: 1,
+    playlistId: 8,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 24,
+    position: 1,
+    playlistId: 9,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 25,
+    position: 1,
+    playlistId: 10,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 26,
+    position: 1,
+    playlistId: 11,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 27,
+    position: 2,
+    playlistId: 11,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
+  {
+    id: 28,
+    position: 1,
+    playlistId: 12,
+    name: 'New Name',
+    price: 0.79,
+    duration: 190,
+  },
 ];
+
+export default class Track {
+  static findByPlaylistId(id: number) {
+    return tracks.filter(t => t.playlistId === id);
+  }
+}

@@ -4,5 +4,5 @@ type Track {
   id: Int!
   name: String!
   position: Int! # position in playlist
-  price: Int
+  price: Float
 }
