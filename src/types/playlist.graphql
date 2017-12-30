@@ -10,6 +10,6 @@ type Playlist {
 }
 
 type Query {
-  getPlaylist(id: Int!): Playlist!
+  getPlaylist(id: Int, username: String, permalink: String): Playlist
   allPlaylists: [Playlist!]!
 }

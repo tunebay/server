@@ -5,10 +5,34 @@ import tracks from '../database/Track';
 
 export default {
   Query: {
-    allPlaylists: (parent: *, args: *, context: *, info: *) =>
-      Playlist.findAll(),
-    getPlaylist: (parent: *, { id }: *, context: *, info: *) =>
-      Playlist.findById(id),
+    allPlaylists(parent: *, args: *, context: *, info: *) {
+      return Playlist.findAll();
+    },
+    getPlaylist(
+      parent: *,
+      args: { id: number, username: string, permalink: string },
+      context: *,
+      info: *,
+    ) {
+      try {
+        const { id, username, permalink } = args;
+        if (id) return Playlist.findById(id);
+
+        if (!username || !permalink) {
+          throw new Error(
+            'You must porvide either username & permalink or playlidId',
+          );
+        }
+
+        const user = User.findByUsername(username);
+        if (!user) return null;
+
+        return Playlist.findByPath(user.id, permalink);
+      } catch (e) {
+        console.log(e);
+        return e;
+      }
+    },
   },
   Playlist: {
     artist: ({ userId }: *, args: *, context: *, info: *) =>

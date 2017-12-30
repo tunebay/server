@@ -131,4 +131,10 @@ export default class Playlist {
   static findAll() {
     return playlists;
   }
+
+  static findByPath(userId: number, permalink: string) {
+    return playlists.find(
+      p => p.userId === userId && p.permalink === permalink,
+    );
+  }
 }
