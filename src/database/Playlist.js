@@ -23,8 +23,7 @@ const playlists = [
     userId: 1,
     title: 'Thinking Of You',
     price: 5.99,
-    artwork:
-      'https://images.genius.com/122c310b162d72c5d271d32753b5fa60.630x630x1.jpg',
+    artwork: 'https://images.genius.com/122c310b162d72c5d271d32753b5fa60.630x630x1.jpg',
     permalink: 'thinking-of-you',
   },
   {
@@ -32,8 +31,7 @@ const playlists = [
     userId: 1,
     title: 'Finders Keepers',
     price: 5.99,
-    artwork:
-      'https://pbs.twimg.com/profile_images/862396484658057223/0RDeiaKc.jpg',
+    artwork: 'https://pbs.twimg.com/profile_images/862396484658057223/0RDeiaKc.jpg',
     permalink: 'finders-keepers',
   },
   {
@@ -73,8 +71,7 @@ const playlists = [
     userId: 3,
     title: 'Redlight',
     price: 5.99,
-    artwork:
-      'https://i1.sndcdn.com/artworks-b2350727-2418-480b-87c0-47178c030ea2-0-t500x500.jpg',
+    artwork: 'https://i1.sndcdn.com/artworks-b2350727-2418-480b-87c0-47178c030ea2-0-t500x500.jpg',
     permalink: 'redlight',
   },
   {
@@ -133,8 +130,6 @@ export default class Playlist {
   }
 
   static findByPath(userId: number, permalink: string) {
-    return playlists.find(
-      p => p.userId === userId && p.permalink === permalink,
-    );
+    return playlists.find(p => p.userId === userId && p.permalink === permalink);
   }
 }

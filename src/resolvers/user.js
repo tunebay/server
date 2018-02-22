@@ -16,7 +16,6 @@ export default {
     },
   },
   User: {
-    playlists: (parent: *, args: *, context: *, info: *) =>
-      Playlist.findAllByUserId(parent.id),
+    playlists: (parent: *, args: *, context: *, info: *) => Playlist.findAllByUserId(parent.id),
   },
 };

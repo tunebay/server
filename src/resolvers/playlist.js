@@ -19,9 +19,7 @@ export default {
         if (id) return Playlist.findById(id);
 
         if (!username || !permalink) {
-          throw new Error(
-            'You must porvide either username & permalink or playlidId',
-          );
+          throw new Error('You must porvide either username & permalink or playlidId');
         }
 
         const user = User.findByUsername(username);
@@ -35,9 +33,7 @@ export default {
     },
   },
   Playlist: {
-    artist: ({ userId }: *, args: *, context: *, info: *) =>
-      User.findById(userId),
-    tracks: (parent: *, args: *, context: *, info: *) =>
-      tracks.findByPlaylistId(parent.id),
+    artist: ({ userId }: *, args: *, context: *, info: *) => User.findById(userId),
+    tracks: (parent: *, args: *, context: *, info: *) => tracks.findByPlaylistId(parent.id),
   },
 };
