@@ -3,6 +3,7 @@ export default (sequelize: any, DataTypes: any) => {
   const Playlist = sequelize.define('playlist', {
     artwork: DataTypes.STRING,
     permalink: DataTypes.STRING,
+    url: DataTypes.STRING,
     title: DataTypes.STRING,
     price: DataTypes.FLOAT,
     public: DataTypes.BOOLEAN,

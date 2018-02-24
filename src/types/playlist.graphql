@@ -4,6 +4,7 @@ type Playlist {
   public: Boolean
   id: Int!
   permalink: String!
+  url: String!
   price: Float
   supporters: [User!]!
   title: String!

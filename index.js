@@ -20,7 +20,11 @@ app.use(
   bodyParser.json(),
   graphqlExpress({
     schema,
-    context: { models },
+    context: {
+      models,
+      // TODO infer user
+      user: { id: 1 },
+    },
   }),
 );
 

@@ -15,3 +15,17 @@ type Query {
   getUser(id: Int, username: String): User
   allUsers: [User]!
 }
+
+type Mutation {
+  createUser(
+    #required
+    email: String!
+    username: String!
+    password: String!
+    provider: String!
+    name: String!
+    # could get from provider
+    coverPhoto: String
+    profilePicture: String
+  ): User!
+}

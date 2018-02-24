@@ -1,17 +1,11 @@
 // @flow
-import Playlist from '../database/Playlist';
-import User from '../database/User';
-import tracks from '../database/Track';
-
 export default {
   Query: {
-    async allPlaylists(parent: *, args: *, { models }: *, info: *) {
-      return Playlist.findAll();
-    },
+    allPlaylists: (parent: *, args: *, { models: { Playlist } }: *, info: *) => Playlist.findAll(),
     getPlaylist(
       parent: *,
       args: { id: number, username: string, permalink: string },
-      context: *,
+      { models: { Playlist, User } }: *,
       info: *,
     ) {
       try {
@@ -22,10 +16,10 @@ export default {
           throw new Error('You must porvide either username & permalink or playlidId');
         }
 
-        const user = User.findByUsername(username);
+        const user = User.findOne({ username });
         if (!user) return null;
 
-        return Playlist.findByPath(user.id, permalink);
+        return Playlist.findOne({ userId: user.id, permalink });
       } catch (e) {
         console.log(e);
         return e;
@@ -33,7 +27,8 @@ export default {
     },
   },
   Playlist: {
-    artist: ({ userId }: *, args: *, context: *, info: *) => User.findById(userId),
-    tracks: (parent: *, args: *, context: *, info: *) => tracks.findByPlaylistId(parent.id),
+    artist: ({ userId }: *, args: *, { models: { User } }: *, info: *) => User.findById(userId),
+    tracks: (parent: *, args: *, { models: { Track } }: *, info: *) =>
+      Track.find({ playlidId: parent.id }),
   },
 };
