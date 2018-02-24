@@ -1,12 +1,14 @@
 type User {
-  avatar: String!
+  avatar: String
   bio: String
-  cover: String
+  coverPhoto: String
   id: Int
   name: String
-  photo: String
+  profilePicture: String
   playlists: [Playlist!]!
-  username: String
+  username: String!
+  email: String!
+  provider: String! # 'email' | 'google' | 'facebook'
 }
 
 type Query {

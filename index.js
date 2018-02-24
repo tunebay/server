@@ -6,8 +6,9 @@ import { express as voyager } from 'graphql-voyager/middleware';
 import cors from 'cors';
 
 import schema from './src/schema';
+import models from './src/models';
 
-const PORT = 5000;
+const PORT = 5000 || process.env.PORT;
 const app = express();
 const graphqlEndpoint = '/graphql';
 
@@ -19,12 +20,17 @@ app.use(
   bodyParser.json(),
   graphqlExpress({
     schema,
+    context: { models },
   }),
 );
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }));
 
-app.listen(PORT, () => {
-  console.log('Listning on port', PORT);
-});
+async function main() {
+  await models.sequelize.sync();
+  await app.listen(PORT, () => {
+    console.log('Listning on port', PORT);
+  });
+}
+main();

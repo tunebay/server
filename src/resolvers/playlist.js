@@ -5,7 +5,7 @@ import tracks from '../database/Track';
 
 export default {
   Query: {
-    allPlaylists(parent: *, args: *, context: *, info: *) {
+    async allPlaylists(parent: *, args: *, { models }: *, info: *) {
       return Playlist.findAll();
     },
     getPlaylist(

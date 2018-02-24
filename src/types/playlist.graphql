@@ -1,6 +1,7 @@
 type Playlist {
   artist: User!
   artwork: String
+  public: Boolean
   id: Int!
   permalink: String!
   price: Float
