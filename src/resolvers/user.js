@@ -17,6 +17,6 @@ export default {
   },
   User: {
     playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) =>
-      Playlist.findOne({ userId: parent.id }),
+      Playlist.findAll({ userId: parent.id }),
   },
 };

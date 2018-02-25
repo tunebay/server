@@ -2,11 +2,11 @@
 export default (sequelize: any, DataTypes: any) => {
   const Playlist = sequelize.define('playlist', {
     artwork: DataTypes.STRING,
-    permalink: DataTypes.STRING,
-    url: DataTypes.STRING,
-    title: DataTypes.STRING,
+    permalink: { type: DataTypes.STRING, allowNull: false },
+    url: { type: DataTypes.STRING, allowNull: false, unique: true },
+    title: { type: DataTypes.STRING, allowNull: false },
     price: DataTypes.FLOAT,
-    public: DataTypes.BOOLEAN,
+    public: { type: DataTypes.BOOLEAN, allowNull: false },
   });
 
   Playlist.associate = models => {

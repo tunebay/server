@@ -32,7 +32,7 @@ app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }));
 
 async function main() {
-  await models.sequelize.sync();
+  await models.sequelize.sync({ force: false });
   await app.listen(PORT, () => {
     console.log('Listning on port', PORT);
   });

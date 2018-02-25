@@ -1,9 +1,9 @@
 // @flow
 export default (sequelize: any, DataTypes: any) => {
   const Track = sequelize.define('track', {
-    title: DataTypes.STRING,
+    title: { type: DataTypes.STRING, allowNull: false },
     price: DataTypes.FLOAT,
-    position: DataTypes.INTEGER,
+    playlistPosition: { type: DataTypes.INTEGER, allowNull: false, field: 'playlist_position' },
     duration: DataTypes.INTEGER,
   });
 

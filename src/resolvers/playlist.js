@@ -29,6 +29,6 @@ export default {
   Playlist: {
     artist: ({ userId }: *, args: *, { models: { User } }: *, info: *) => User.findById(userId),
     tracks: (parent: *, args: *, { models: { Track } }: *, info: *) =>
-      Track.find({ playlidId: parent.id }),
+      Track.findAll({ playlidId: parent.id }),
   },
 };
