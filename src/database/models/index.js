@@ -4,8 +4,6 @@ import Sequlize from 'sequelize';
 
 import config from '../config/config';
 
-console.log('config', config);
-
 const env = process.env.NODE_ENV || 'development';
 
 const sequelize = new Sequlize(

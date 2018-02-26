@@ -5,6 +5,13 @@ export default (sequelize: any, DataTypes: any) => {
     price: DataTypes.FLOAT,
     playlistPosition: { type: DataTypes.INTEGER, allowNull: false, field: 'playlist_position' },
     duration: DataTypes.INTEGER,
+
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      field: 'created_at',
+    },
   });
 
   Track.associate = models => {

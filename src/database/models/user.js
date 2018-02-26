@@ -1,6 +1,6 @@
 // @flow
 export default (sequelize: any, DataTypes: any) => {
-  const User = sequelize.define('users', {
+  const User = sequelize.define('user', {
     avatar: DataTypes.STRING,
     bio: DataTypes.TEXT,
     coverPhoto: { type: DataTypes.STRING, field: 'cover_photo' },
@@ -10,6 +10,13 @@ export default (sequelize: any, DataTypes: any) => {
     username: { type: DataTypes.STRING, unique: true, allowNull: false },
     email: { type: DataTypes.STRING, unique: true, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
+
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      field: 'created_at',
+    },
   });
 
   return User;

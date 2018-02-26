@@ -7,6 +7,13 @@ export default (sequelize: any, DataTypes: any) => {
     title: { type: DataTypes.STRING, allowNull: false },
     price: DataTypes.FLOAT,
     public: { type: DataTypes.BOOLEAN, allowNull: false },
+
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      field: 'created_at',
+    },
   });
 
   Playlist.associate = models => {
