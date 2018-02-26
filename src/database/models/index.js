@@ -1,14 +1,19 @@
 // @flow
-import path from 'path';
-
+import path from 'path'; // eslint-disable-line import/order
 import Sequlize from 'sequelize';
 
-const sequelize = new Sequlize('tunebay_dev', 'postgres', 'postgres', {
-  dialect: 'postgres',
-  define: {
-    underscored: true,
-  },
-});
+import config from '../config/config';
+
+console.log('config', config);
+
+const env = process.env.NODE_ENV || 'development';
+
+const sequelize = new Sequlize(
+  config[env].database,
+  config[env].username,
+  config[env].password,
+  config[env],
+);
 
 const models: any = {
   User: sequelize.import(path.join(__dirname, './user')),

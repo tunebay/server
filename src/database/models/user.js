@@ -1,8 +1,8 @@
 // @flow
 export default (sequelize: any, DataTypes: any) => {
-  const User = sequelize.define('user', {
+  const User = sequelize.define('users', {
     avatar: DataTypes.STRING,
-    bio: DataTypes.STRING,
+    bio: DataTypes.TEXT,
     coverPhoto: { type: DataTypes.STRING, field: 'cover_photo' },
     name: { type: DataTypes.STRING, allowNull: false },
     profilePicture: { type: DataTypes.STRING, field: 'profile_picture' },

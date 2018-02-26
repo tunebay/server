@@ -4,10 +4,7 @@ module.exports = {
   parser: 'babel-eslint',
   rules: {
     'flowtype/generic-spacing': 'off',
-    'import/order': [
-      'error',
-      { 'newlines-between': 'always-and-inside-groups' },
-    ],
+    'import/order': ['error', { 'newlines-between': 'always-and-inside-groups' }],
     'import/default': 'off',
     'import/named': 'off',
     'no-undef': 'error',
@@ -28,10 +25,7 @@ module.exports = {
         allowTaggedTemplates: true,
       },
     ],
-    'no-unused-vars': [
-      'error',
-      { vars: 'all', args: 'none', ignoreRestSiblings: true },
-    ],
+    'no-unused-vars': ['error', { vars: 'all', args: 'none', ignoreRestSiblings: true }],
     'function-paren-newline': 'off',
   },
-}
+};

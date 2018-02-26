@@ -6,7 +6,7 @@ import { express as voyager } from 'graphql-voyager/middleware';
 import cors from 'cors';
 
 import schema from './src/schema';
-import models from './src/models';
+import models from './src/database/models';
 
 const PORT = 5000 || process.env.PORT;
 const app = express();
