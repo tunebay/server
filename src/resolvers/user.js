@@ -5,7 +5,7 @@ export default {
     getUser: (parent: *, req: *, { models: { User }, user }: *, info: *) => {
       try {
         const { id, username } = req;
-        return id ? User.findById(id) : User.findOne({ username });
+        return id ? User.findById(id) : User.findOne({ where: { username } });
       } catch (e) {
         console.log('Error', e);
         return null;
@@ -16,7 +16,10 @@ export default {
     createUser: (parent: *, args: *, { models }: *, info: *) => models.User.create(args),
   },
   User: {
-    playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) =>
-      Playlist.findAll({ userId: parent.id }),
+    playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) => {
+      console.log('PARENT ID:', parent);
+      console.log('ARGS:', args);
+      return Playlist.findAll({ where: { userId: parent.id } });
+    },
   },
 };

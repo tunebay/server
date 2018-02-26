@@ -20,6 +20,7 @@ module.exports = {
           model: 'playlists',
           key: 'id',
         },
+        field: 'playlist_id',
       },
 
       createdAt: {

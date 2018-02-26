@@ -16,10 +16,10 @@ export default {
           throw new Error('You must porvide either username & permalink or playlidId');
         }
 
-        const user = User.findOne({ username });
+        const user = User.findOne({ where: { username } });
         if (!user) return null;
 
-        return Playlist.findOne({ userId: user.id, permalink });
+        return Playlist.findOne({ where: { userId: user.id, permalink } });
       } catch (e) {
         console.log(e);
         return e;
@@ -29,6 +29,6 @@ export default {
   Playlist: {
     artist: ({ userId }: *, args: *, { models: { User } }: *, info: *) => User.findById(userId),
     tracks: (parent: *, args: *, { models: { Track } }: *, info: *) =>
-      Track.findAll({ playlidId: parent.id }),
+      Track.findAll({ where: { playlidId: parent.id } }),
   },
 };
