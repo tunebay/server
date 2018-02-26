@@ -5,4 +5,5 @@ type Track {
   title: String!
   position: Int! # position in playlist
   price: Float
+  createdAt: String!
 }

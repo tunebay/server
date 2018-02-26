@@ -9,6 +9,8 @@ type Playlist {
   supporters: [User!]!
   title: String!
   tracks: [Track!]!
+  createdAt: String!
+  userId: Int!
 }
 
 type Query {

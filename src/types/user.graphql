@@ -9,6 +9,7 @@ type User {
   username: String!
   email: String!
   provider: String! # 'email' | 'google' | 'facebook'
+  createdAt: String!
 }
 
 type Query {
