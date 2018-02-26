@@ -16,10 +16,7 @@ export default {
     createUser: (parent: *, args: *, { models }: *, info: *) => models.User.create(args),
   },
   User: {
-    playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) => {
-      console.log('PARENT ID:', parent);
-      console.log('ARGS:', args);
-      return Playlist.findAll({ where: { userId: parent.id } });
-    },
+    playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) =>
+      Playlist.findAll({ where: { userId: parent.id } }),
   },
 };
