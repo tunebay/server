@@ -3,7 +3,7 @@ type Track {
   playlistId: Int!
   id: Int!
   title: String!
-  position: Int! # position in playlist
+  playlistPosition: Int! # position in playlist
   price: Float
   createdAt: String!
 }
