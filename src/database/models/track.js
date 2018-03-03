@@ -3,10 +3,21 @@ export default (sequelize: any, DataTypes: any) => {
   const Track = sequelize.define(
     'track',
     {
-      title: { type: DataTypes.STRING, allowNull: false },
-      price: DataTypes.FLOAT,
-      playlistPosition: { type: DataTypes.INTEGER, allowNull: false, field: 'playlist_position' },
-      duration: DataTypes.INTEGER,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.FLOAT,
+        validate: { isFloat: true },
+      },
+      playlistPosition: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'playlist_position',
+        validate: { isInt: true },
+      },
+      duration: { type: DataTypes.INTEGER },
 
       createdAt: {
         allowNull: false,

@@ -3,10 +3,25 @@ export default (sequelize: any, DataTypes: any) => {
   const Playlist = sequelize.define(
     'playlist',
     {
-      artwork: DataTypes.STRING,
-      permalink: { type: DataTypes.STRING, allowNull: false },
-      url: { type: DataTypes.STRING, allowNull: false, unique: true },
-      title: { type: DataTypes.STRING, allowNull: false },
+      artwork: {
+        type: DataTypes.STRING,
+        validate: { isUrl: true },
+      },
+      permalink: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: { isUrl: true },
+      },
+      url: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: { isUrl: true },
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       price: DataTypes.FLOAT,
       public: { type: DataTypes.BOOLEAN, allowNull: false },
 

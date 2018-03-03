@@ -22,7 +22,7 @@ export default {
         console.log('CREATED USER: ', user);
         return true;
       } catch (e) {
-        return false;
+        return e;
       }
     },
   },
