@@ -18,7 +18,7 @@ export default {
     register: async (parent: *, { password, ...otherArgs }: *, { models }: *, info: *) => {
       try {
         const hashedPassword = await bcrypt.hash(password, 12);
-        const user = models.User.create({ ...otherArgs, password: hashedPassword });
+        const user = await models.User.create({ ...otherArgs, password: hashedPassword });
         console.log('CREATED USER: ', user);
         return true;
       } catch (e) {
