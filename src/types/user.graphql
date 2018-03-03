@@ -8,7 +8,6 @@ type User {
   playlists: [Playlist!]!
   username: String!
   email: String!
-  provider: String! # 'email' | 'google' | 'facebook'
   createdAt: String!
 }
 
@@ -18,15 +17,14 @@ type Query {
 }
 
 type Mutation {
-  createUser(
+  register(
     #required
     email: String!
     username: String!
     password: String!
-    provider: String!
     name: String!
     # could get from provider
     coverPhoto: String
     profilePicture: String
-  ): User!
+  ): Boolean!
 }

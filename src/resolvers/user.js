@@ -1,4 +1,6 @@
 // @flow
+import bcrypt from 'bcrypt';
+
 export default {
   Query: {
     allUsers: (parent: *, args: *, { models: { User }, user }: *, info: *) => User.findAll(),
@@ -13,7 +15,16 @@ export default {
     },
   },
   Mutation: {
-    createUser: (parent: *, args: *, { models }: *, info: *) => models.User.create(args),
+    register: async (parent: *, { password, ...otherArgs }: *, { models }: *, info: *) => {
+      try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const user = models.User.create({ ...otherArgs, password: hashedPassword });
+        console.log('CREATED USER: ', user);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
   },
   User: {
     playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) =>
