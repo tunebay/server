@@ -26,5 +26,11 @@ type Mutation {
     # could get from provider
     coverPhoto: String
     profilePicture: String
-  ): Boolean!
+  ): RegisterResponse!
+}
+
+type RegisterResponse {
+  ok: Boolean!
+  user: User
+  errors: [Error!]
 }
