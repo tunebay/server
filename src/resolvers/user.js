@@ -1,8 +1,8 @@
 // @flow
-import bcrypt from 'bcrypt';
-
 import { type Context } from '../lib/flowTypes';
 import formatErrors from '../lib/formatErrors';
+
+import { tryLogin } from '../lib/auth';
 
 export default {
   Query: {
@@ -17,27 +17,20 @@ export default {
     },
   },
   Mutation: {
-    register: async (parent: *, { password, ...otherArgs }: *, { models }: Context, info: *) => {
-      if (password.length < 8) {
-        return {
-          ok: false,
-          errors: [{ path: 'password', message: 'password must be longer than 8 characters' }],
-        };
-      }
+    register: async (parent: *, args: *, { models }: Context, info: *) => {
       try {
-        const hashedPassword = await bcrypt.hash(password, 12);
-        const user = await models.User.create({ ...otherArgs, password: hashedPassword });
-        return {
-          ok: true,
-          user,
-        };
+        const user = await models.User.create(args);
+        return { ok: true, user };
       } catch (e) {
-        return {
-          ok: false,
-          errors: formatErrors(e, models),
-        };
+        return { ok: false, errors: formatErrors(e, models) };
       }
     },
+    login: async (
+      parent: *,
+      { emailOrUsername, password }: *,
+      { models, jwtSecret, jwtRefreshSecret }: Context,
+      info: *,
+    ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
   },
   User: {
     playlists: (parent: *, args: *, { models: { Playlist } }: Context, info: *) =>

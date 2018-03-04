@@ -19,6 +19,9 @@ const graphqlEndpoint = '/graphql';
 
 app.use(cors()); // TODO
 
+if (!process.env.JWT_SECRET) throw new Error('No jwt secret set');
+if (!process.env.JWT_REFRESH_SECRET) throw new Error('No jwt refresh secret set');
+
 const context: Context = {
   models,
   // TODO infer user

@@ -1,4 +1,6 @@
 // @flow
+import bcrypt from 'bcrypt';
+
 import reservedUsernames from '../../lib/reservedUsernames';
 
 export default (sequelize: any, DataTypes: any) => {
@@ -44,7 +46,13 @@ export default (sequelize: any, DataTypes: any) => {
         allowNull: false,
         validate: { isEmail: { args: true, msg: 'Enter a valid email' } },
       },
-      password: { type: DataTypes.STRING, allowNull: false },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: { args: [8, 500], msg: 'Password must be atleast 8 characters long' },
+        },
+      },
 
       createdAt: {
         allowNull: false,
@@ -53,7 +61,15 @@ export default (sequelize: any, DataTypes: any) => {
         field: 'created_at',
       },
     },
-    { timestamps: false },
+    {
+      timestamps: false,
+      hooks: {
+        afterValidate: async user => {
+          const hasedPassword = await bcrypt.hash(user.password, 12);
+          user.password = hasedPassword;
+        },
+      },
+    },
   );
 
   return User;
