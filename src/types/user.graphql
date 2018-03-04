@@ -27,10 +27,19 @@ type Mutation {
     coverPhoto: String
     profilePicture: String
   ): RegisterResponse!
+
+  login(emailOrUsername: String!, password: String!): LoginResponse!
 }
 
 type RegisterResponse {
   ok: Boolean!
   user: User
   errors: [Error!]
+}
+
+type LoginResponse {
+  ok: Boolean!
+  errors: [Error!]
+  token: String
+  refreshToken: String
 }

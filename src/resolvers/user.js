@@ -1,12 +1,13 @@
 // @flow
 import bcrypt from 'bcrypt';
 
+import { type Context } from '../lib/flowTypes';
 import formatErrors from '../lib/formatErrors';
 
 export default {
   Query: {
-    allUsers: (parent: *, args: *, { models: { User }, user }: *, info: *) => User.findAll(),
-    getUser: (parent: *, req: *, { models: { User }, user }: *, info: *) => {
+    allUsers: (parent: *, args: *, { models: { User } }: Context, info: *) => User.findAll(),
+    getUser: (parent: *, req: *, { models: { User } }: Context, info: *) => {
       try {
         const { id, username } = req;
         return id ? User.findById(id) : User.findOne({ where: { username } });
@@ -16,7 +17,7 @@ export default {
     },
   },
   Mutation: {
-    register: async (parent: *, { password, ...otherArgs }: *, { models }: *, info: *) => {
+    register: async (parent: *, { password, ...otherArgs }: *, { models }: Context, info: *) => {
       if (password.length < 8) {
         return {
           ok: false,
@@ -39,7 +40,7 @@ export default {
     },
   },
   User: {
-    playlists: (parent: *, args: *, { models: { Playlist } }: *, info: *) =>
+    playlists: (parent: *, args: *, { models: { Playlist } }: Context, info: *) =>
       Playlist.findAll({ where: { userId: parent.id } }),
   },
 };

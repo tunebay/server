@@ -1,11 +1,14 @@
 // @flow
+import { type Context } from '../lib/flowTypes';
+
 export default {
   Query: {
-    allPlaylists: (parent: *, args: *, { models: { Playlist } }: *, info: *) => Playlist.findAll(),
+    allPlaylists: (parent: *, args: *, { models: { Playlist } }: Context, info: *) =>
+      Playlist.findAll(),
     getPlaylist(
       parent: *,
       args: { id: number, username: string, permalink: string },
-      { models: { Playlist, User } }: *,
+      { models: { Playlist, User } }: Context,
       info: *,
     ) {
       try {
@@ -27,8 +30,9 @@ export default {
     },
   },
   Playlist: {
-    artist: ({ userId }: *, args: *, { models: { User } }: *, info: *) => User.findById(userId),
-    tracks: (parent: *, args: *, { models: { Track } }: *, info: *) =>
+    artist: ({ userId }: *, args: *, { models: { User } }: Context, info: *) =>
+      User.findById(userId),
+    tracks: (parent: *, args: *, { models: { Track } }: Context, info: *) =>
       Track.findAll({ where: { playlistId: parent.id } }),
   },
 };

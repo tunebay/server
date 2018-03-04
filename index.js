@@ -1,4 +1,5 @@
 // @flow
+/* eslint import/first: 0 */
 require('dotenv').config();
 
 import express from 'express';
@@ -6,6 +7,8 @@ import bodyParser from 'body-parser';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { express as voyager } from 'graphql-voyager/middleware';
 import cors from 'cors';
+
+import { type Context } from './src/lib/flowTypes';
 
 import schema from './src/schema';
 import models from './src/database/models';
@@ -15,7 +18,14 @@ const app = express();
 const graphqlEndpoint = '/graphql';
 
 app.use(cors()); // TODO
-console.log(process.env.jwtSecret);
+
+const context: Context = {
+  models,
+  // TODO infer user
+  user: { id: 1 },
+  jwtSecret: process.env.JWT_SECRET,
+  jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+};
 
 // bodyParser is needed just for POST.
 app.use(
@@ -23,13 +33,7 @@ app.use(
   bodyParser.json(),
   graphqlExpress({
     schema,
-    context: {
-      models,
-      // TODO infer user
-      user: { id: 1 },
-      jwtSecret: process.env.JWT_SECRET,
-      jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
-    },
+    context,
   }),
 );
 
