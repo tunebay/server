@@ -1,4 +1,6 @@
 // @flow
+require('dotenv').config();
+
 import express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
@@ -13,6 +15,7 @@ const app = express();
 const graphqlEndpoint = '/graphql';
 
 app.use(cors()); // TODO
+console.log(process.env.jwtSecret);
 
 // bodyParser is needed just for POST.
 app.use(
@@ -24,6 +27,8 @@ app.use(
       models,
       // TODO infer user
       user: { id: 1 },
+      jwtSecret: process.env.JWT_SECRET,
+      jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
     },
   }),
 );
