@@ -12,6 +12,7 @@ export type UserType = {|
   username: string,
   email: string,
   createdAt?: string,
+  password: string,
 |};
 
 export type PlaylistType = {|
@@ -69,6 +70,6 @@ export type ModelsType = {|
 export type Context = {|
   models: ModelsType,
   user?: {| id: number |},
-  jwtSecret?: ?string,
-  jwtRefreshSecret?: ?string,
+  jwtSecret: string,
+  jwtRefreshSecret: string,
 |};
