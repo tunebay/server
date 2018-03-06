@@ -380,7 +380,7 @@ const reservedUsernames: Array<string> = [
   'recent',
   'recruit',
   'recruitment',
-  'register',
+  'signup',
   'registration',
   'release',
   'remove',

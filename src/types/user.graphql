@@ -17,7 +17,7 @@ type Query {
 }
 
 type Mutation {
-  register(
+  signup(
     #required
     email: String!
     username: String!

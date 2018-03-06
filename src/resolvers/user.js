@@ -17,7 +17,7 @@ export default {
     },
   },
   Mutation: {
-    register: async (parent: *, args: *, { models }: Context, info: *) => {
+    signup: async (parent: *, args: *, { models }: Context, info: *) => {
       try {
         const user = await models.User.create(args);
         return { ok: true, user };
