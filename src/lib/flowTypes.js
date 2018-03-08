@@ -1,5 +1,6 @@
 // @flow
 /* eslint no-use-before-define: 0 */
+import { type $Request } from 'express';
 
 export type UserType = {|
   avatar?: string,
@@ -73,3 +74,5 @@ export type Context = {|
   jwtSecret: string,
   jwtRefreshSecret: string,
 |};
+
+export type $RequestWithUser = $Request & { user?: {| id: number |} };

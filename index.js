@@ -8,7 +8,7 @@ import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { express as voyager } from 'graphql-voyager/middleware';
 import cors from 'cors';
 
-import { type Context } from './src/lib/flowTypes';
+import type { Context, $RequestWithUser } from './src/lib/flowTypes';
 
 import schema from './src/schema';
 import models from './src/database/models';
@@ -19,25 +19,23 @@ const graphqlEndpoint = '/graphql';
 
 app.use(cors()); // TODO
 
-if (!process.env.JWT_SECRET) throw new Error('No jwt secret set');
-if (!process.env.JWT_REFRESH_SECRET) throw new Error('No jwt refresh secret set');
-
-const context: Context = {
-  models,
-  // TODO infer user
-  user: { id: 1 },
-  jwtSecret: process.env.JWT_SECRET,
-  jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
+const getContext = (req: $RequestWithUser): Context => {
+  const jwtSecret = process.env.JWT_SECRET;
+  const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
+  if (!jwtSecret) throw new Error('No jwt secret set');
+  if (!jwtRefreshSecret) throw new Error('No jwt refresh secret set');
+  const { user } = req;
+  return { models, user, jwtSecret, jwtRefreshSecret };
 };
 
 // bodyParser is needed just for POST.
 app.use(
   graphqlEndpoint,
   bodyParser.json(),
-  graphqlExpress({
+  graphqlExpress((req: $RequestWithUser) => ({
     schema,
-    context,
-  }),
+    context: getContext(req),
+  })),
 );
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));

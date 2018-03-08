@@ -21,6 +21,7 @@ export const tryLogin = async (
   jwtSecret: string,
   jwtRefreshSecret: string,
 ) => {
+  // TODO implement safer email check
   const isEmail = emailOrUsername.includes('@');
 
   const user: UserType = isEmail
