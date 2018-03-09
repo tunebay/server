@@ -62,7 +62,7 @@ export const refreshTokens = async (
   models: ModelsType,
   jwtSecret: string,
   jwtRefreshSecret: string,
-) => {
+): { ok: boolean, token: string, refreshToken: string } | {} => {
   let userId;
 
   try {
