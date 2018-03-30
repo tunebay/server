@@ -12,4 +12,4 @@ const schema = {
   resolvers,
 };
 
-module.exports = makeExecutableSchema(schema);
+export default makeExecutableSchema(schema);

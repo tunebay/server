@@ -5,9 +5,15 @@
   "author": "Mali Michael <mali@tunebay.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node index.ts"
   },
   "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/cors": "^2.8.3",
+    "@types/express": "^4.11.1",
+    "@types/jsonwebtoken": "^7.2.6",
+    "@types/node": "^9.6.1",
+    "@types/sequelize": "^4.27.12",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-preset-env": "^1.6.1",

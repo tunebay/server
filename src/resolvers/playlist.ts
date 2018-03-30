@@ -1,12 +1,14 @@
+import { Context } from '../lib/@types';
+import playlist from '../database/models/playlist';
+
 export default {
   Query: {
-    allPlaylists: (parent: *, args: *, { models: { Playlist } }: Context, info: *) =>
+    allPlaylists: (parent: any, args: any, { models: { Playlist } }: Context) =>
       Playlist.findAll(),
     getPlaylist(
-      parent: *,
-      args: { id: number, username: string, permalink: string },
-      { models: { Playlist, User } }: Context,
-      info: *
+      parent,
+      args: { id: number; username: string; permalink: string },
+      { models: { Playlist, User } }: Context
     ) {
       try {
         const { id, username, permalink } = args;
@@ -29,9 +31,9 @@ export default {
     },
   },
   Playlist: {
-    artist: ({ userId }: *, args: *, { models: { User } }: Context, info: *) =>
+    artist: ({ userId }, args, { models: { User } }: Context, info) =>
       User.findById(userId),
-    tracks: (parent: *, args: *, { models: { Track } }: Context, info: *) =>
+    tracks: (parent, args, { models: { Track } }: Context, info) =>
       Track.findAll({ where: { playlistId: parent.id } }),
   },
 };

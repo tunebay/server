@@ -1,4 +1,6 @@
-export default (sequelize: any, DataTypes: any) => {
+import sequelize, { Sequelize, DataTypes } from 'sequelize';
+
+export default (sequelize: Sequelize, DataTypes: DataTypes) => {
   const Playlist = sequelize.define(
     'playlist',
     {

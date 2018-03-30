@@ -1,8 +1,9 @@
+import { Sequelize, DataTypes } from 'sequelize';
 import bcrypt from 'bcrypt';
 
 import reservedUsernames from '../../lib/reservedUsernames';
 
-export default (sequelize: any, DataTypes: any) => {
+export default (sequelize: Sequelize, DataTypes: DataTypes) => {
   const User = sequelize.define(
     'user',
     {
@@ -27,7 +28,7 @@ export default (sequelize: any, DataTypes: any) => {
       },
       username: {
         type: DataTypes.STRING,
-        unique: { args: true, msg: 'Username is already in use' },
+        // unique: { args: true, msg: 'Username is already in use' },
         allowNull: false,
         validate: {
           isAlphanumeric: {
@@ -38,8 +39,8 @@ export default (sequelize: any, DataTypes: any) => {
             args: [3, 25],
             msg: 'Usernames must be between 3 and 25 characters long',
           },
-          isNotReserved: username => {
-            if (reservedUsernames.includes(username)) {
+          isNotReserved: (username: string) => {
+            if (reservedUsernames.indexOf(username)) {
               throw new Error('Username reserved');
             }
           },
@@ -47,7 +48,7 @@ export default (sequelize: any, DataTypes: any) => {
       },
       email: {
         type: DataTypes.STRING,
-        unique: { args: true, msg: 'Email is already in use' },
+        // unique: { args: true, msg: 'Email is already in use' }, // TODO
         allowNull: false,
         validate: { isEmail: { args: true, msg: 'Enter a valid email' } },
       },

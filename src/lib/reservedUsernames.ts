@@ -1,4 +1,4 @@
-const reservedUsernames: Array<string> = [
+const reservedUsernames: String[] = [
   'about',
   'account',
   'activate',
