@@ -1,4 +1,3 @@
-// @flow
 /* eslint no-use-before-define: 0 */
 import { type $Request } from 'express';
 

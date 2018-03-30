@@ -1,4 +1,3 @@
-// @flow
 import path from 'path';
 
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';

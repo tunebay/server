@@ -1,4 +1,3 @@
-// @flow
 const reservedUsernames: Array<string> = [
   'about',
   'account',

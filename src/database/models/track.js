@@ -1,4 +1,3 @@
-// @flow
 export default (sequelize: any, DataTypes: any) => {
   const Track = sequelize.define(
     'track',
@@ -26,7 +25,7 @@ export default (sequelize: any, DataTypes: any) => {
         field: 'created_at',
       },
     },
-    { timestamps: false },
+    { timestamps: false }
   );
 
   Track.associate = models => {

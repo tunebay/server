@@ -1,4 +1,3 @@
-// @flow
 import bcrypt from 'bcrypt';
 
 import reservedUsernames from '../../lib/reservedUsernames';
@@ -31,8 +30,14 @@ export default (sequelize: any, DataTypes: any) => {
         unique: { args: true, msg: 'Username is already in use' },
         allowNull: false,
         validate: {
-          isAlphanumeric: { args: true, msg: 'Usernames can only contain letters and numbers' },
-          len: { args: [3, 25], msg: 'Usernames must be between 3 and 25 characters long' },
+          isAlphanumeric: {
+            args: true,
+            msg: 'Usernames can only contain letters and numbers',
+          },
+          len: {
+            args: [3, 25],
+            msg: 'Usernames must be between 3 and 25 characters long',
+          },
           isNotReserved: username => {
             if (reservedUsernames.includes(username)) {
               throw new Error('Username reserved');
@@ -69,7 +74,7 @@ export default (sequelize: any, DataTypes: any) => {
           user.password = hasedPassword;
         },
       },
-    },
+    }
   );
 
   return User;

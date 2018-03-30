@@ -1,4 +1,3 @@
-// @flow
 import path from 'path'; // eslint-disable-line import/order
 import Sequelize from 'sequelize';
 
@@ -12,7 +11,7 @@ const sequelize = new Sequelize(
   config[env].database,
   config[env].username,
   config[env].password,
-  config[env],
+  config[env]
 );
 
 const models: ModelsType = {

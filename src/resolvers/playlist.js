@@ -1,6 +1,3 @@
-// @flow
-import { type Context } from '../lib/flowTypes';
-
 export default {
   Query: {
     allPlaylists: (parent: *, args: *, { models: { Playlist } }: Context, info: *) =>
@@ -9,14 +6,16 @@ export default {
       parent: *,
       args: { id: number, username: string, permalink: string },
       { models: { Playlist, User } }: Context,
-      info: *,
+      info: *
     ) {
       try {
         const { id, username, permalink } = args;
         if (id) return Playlist.findById(id);
 
         if (!username || !permalink) {
-          throw new Error('You must porvide either username & permalink or playlidId');
+          throw new Error(
+            'You must porvide either username & permalink or playlidId'
+          );
         }
 
         const user = User.findOne({ where: { username } });

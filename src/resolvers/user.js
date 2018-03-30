@@ -1,12 +1,11 @@
-// @flow
-import { type Context } from '../lib/flowTypes';
 import formatErrors from '../lib/formatErrors';
 
 import { tryLogin } from '../lib/auth';
 
 export default {
   Query: {
-    allUsers: (parent: *, args: *, { models: { User } }: Context, info: *) => User.findAll(),
+    allUsers: (parent: *, args: *, { models: { User } }: Context, info: *) =>
+      User.findAll(),
     getUser: (parent: *, req: *, { models: { User } }: Context, info: *) => {
       try {
         const { id, username } = req;
@@ -29,7 +28,7 @@ export default {
       parent: *,
       { emailOrUsername, password }: *,
       { models, jwtSecret, jwtRefreshSecret }: Context,
-      info: *,
+      info: *
     ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
   },
   User: {

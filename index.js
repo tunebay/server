@@ -1,4 +1,3 @@
-// @flow
 /* eslint import/first: 0 */
 require('dotenv').config();
 
@@ -32,7 +31,13 @@ const addUser = async (req, res, next) => {
       req.user = user;
     } catch (e) {
       const refreshToken = req.headers['x-refresh-token'];
-      const newTokens = refreshTokens(token, refreshToken, models, jwtSecret, jwtRefreshSecret);
+      const newTokens = refreshTokens(
+        token,
+        refreshToken,
+        models,
+        jwtSecret,
+        jwtRefreshSecret
+      );
       if (newTokens.token && newTokens.refreshToken) {
         res.set('Access-Control-Expose-Headers', 'x-token', 'x-refresh-token');
         res.set('x-token', newTokens.token);
@@ -54,7 +59,7 @@ app.use(
       jwtSecret,
       jwtRefreshSecret,
     },
-  })),
+  }))
 );
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));

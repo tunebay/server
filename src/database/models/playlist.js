@@ -1,4 +1,3 @@
-// @flow
 export default (sequelize: any, DataTypes: any) => {
   const Playlist = sequelize.define(
     'playlist',
@@ -32,7 +31,7 @@ export default (sequelize: any, DataTypes: any) => {
         field: 'created_at',
       },
     },
-    { timestamps: false },
+    { timestamps: false }
   );
 
   Playlist.associate = models => {
