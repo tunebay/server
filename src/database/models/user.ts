@@ -1,33 +1,33 @@
-import { Sequelize, DataTypes } from 'sequelize';
 import bcrypt from 'bcrypt';
+import { DataTypes, Sequelize } from 'sequelize';
 
 import reservedUsernames from '../../lib/reservedUsernames';
 
-export default (sequelize: Sequelize, DataTypes: DataTypes) => {
+export default (sequelize: Sequelize, dataTypes: DataTypes) => {
   const User = sequelize.define(
     'user',
     {
       avatar: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         validate: { isUrl: true },
       },
-      bio: DataTypes.TEXT,
+      bio: dataTypes.TEXT,
       coverPhoto: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         field: 'cover_photo',
         validate: { isUrl: true },
       },
       name: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
       },
       profilePicture: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         field: 'profile_picture',
         validate: { isUrl: true },
       },
       username: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         // unique: { args: true, msg: 'Username is already in use' },
         allowNull: false,
         validate: {
@@ -47,13 +47,13 @@ export default (sequelize: Sequelize, DataTypes: DataTypes) => {
         },
       },
       email: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         // unique: { args: true, msg: 'Email is already in use' }, // TODO
         allowNull: false,
         validate: { isEmail: { args: true, msg: 'Enter a valid email' } },
       },
       password: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
         validate: {
           len: { args: [8, 500], msg: 'Password must be atleast 8 characters long' },
@@ -62,7 +62,7 @@ export default (sequelize: Sequelize, DataTypes: DataTypes) => {
 
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: dataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         field: 'created_at',
       },

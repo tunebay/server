@@ -1,5 +1,5 @@
-import formatErrors from '../lib/formatErrors';
-import { Context } from '../lib/@types';
+// import formatErrors from '../lib/formatErrors';
+import { Context } from '../lib/types';
 
 export default {
   Query: {

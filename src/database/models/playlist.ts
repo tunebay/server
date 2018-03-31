@@ -1,34 +1,34 @@
-import sequelize, { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
 
-export default (sequelize: Sequelize, DataTypes: DataTypes) => {
+export default (sequelize: Sequelize, dataTypes: DataTypes) => {
   const Playlist = sequelize.define(
     'playlist',
     {
       artwork: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         validate: { isUrl: true },
       },
       permalink: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
         validate: { isUrl: true },
       },
       url: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: { isUrl: true },
       },
       title: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
       },
-      price: DataTypes.FLOAT,
-      public: { type: DataTypes.BOOLEAN, allowNull: false },
+      price: dataTypes.FLOAT,
+      public: { type: dataTypes.BOOLEAN, allowNull: false },
 
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: dataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         field: 'created_at',
       },

@@ -1,15 +1,12 @@
-/* eslint import/first: 0 */
 require('dotenv').config();
 
-import express from 'express';
+import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import { express as voyager } from 'graphql-voyager/middleware';
 import cors from 'cors';
+import express from 'express';
 
-import schema from './src/schema';
-import models from './src/database/models';
+import models from './database/models';
+import schema from './schema';
 
 const PORT = 5000 || process.env.PORT;
 const app = express();
@@ -32,7 +29,6 @@ app.use(
 );
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
-app.use('/voyager', voyager({ endpointUrl: graphqlEndpoint }));
 
 async function main() {
   await app.listen(PORT, () => {

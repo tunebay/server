@@ -57,7 +57,6 @@ export type Error = {
   message: string;
 };
 
-// TODO  these properly
 export interface Models {
   User: Model<any, any>;
   Playlist: Model<any, any>;
