@@ -3,10 +3,11 @@ import { Context } from '../lib/@types';
 
 export default {
   Query: {
-    allUsers: (parent, args, { models: { User } }: Context, info) => User.findAll(),
-    getUser: (parent, args, { models: { User } }: Context, info) => {
+    allUsers: (parent: any, args: any, { models: { User } }: Context) =>
+      User.findAll(),
+    getUser: (parent: any, args: any, { models: { User } }: Context) => {
       try {
-        const { id, username } = req;
+        const { id, username } = args;
         return id ? User.findById(id) : User.findOne({ where: { username } });
       } catch (e) {
         return null;
@@ -30,7 +31,7 @@ export default {
     // ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
   },
   User: {
-    playlists: (parent, args, { models: { Playlist } }: Context, info) =>
+    playlists: (parent: any, args: any, { models: { Playlist } }: Context) =>
       Playlist.findAll({ where: { userId: parent.id } }),
   },
 };
