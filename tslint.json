@@ -18,6 +18,14 @@
     "space-before-function-paren": false,
     "object-curly-newline": "off",
     "no-underscore-dangle": "off",
+    "prefer-object-spread": true,
+    "prefer-const": true,
+    "prefer-for-of": true,
+    "prefer-method-signature": true,
+    "strict-type-predicates": true,
+    "deprecation": true,
+    "await-promise": true,
+    "array-type": true,
     "arrow-parens": false,
     "no-shadowed-variable": [
       true,
@@ -43,7 +51,7 @@
     ],
     "no-unused-vars": [
       "error",
-      { "vars": "all", "args": "none", "ignoreRestSiblings": true }
+      { "vars": "all", "args": "all", "ignoreRestSiblings": true }
     ],
     "function-paren-newline": "off"
   },

@@ -2,9 +2,8 @@ import { Context } from '../lib/types';
 
 export default {
   Query: {
-    allPlaylists: (parent: any, args: any, { models: { Playlist } }: Context) =>
-      Playlist.findAll(),
-    getPlaylist(
+    allPlaylists: ({}, {}, { models: { Playlist } }: Context) => Playlist.findAll(),
+    async getPlaylist(
       parent: any,
       args: { id: number; username: string; permalink: string },
       { models: { Playlist, User } }: Context
@@ -19,7 +18,7 @@ export default {
           );
         }
 
-        const user = User.findOne({ where: { username } });
+        const user = await User.findOne({ where: { username } });
         if (!user) return null;
 
         return Playlist.findOne({ where: { userId: user.id, permalink } });

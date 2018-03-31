@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/Mali/.nvm/versions/node/v9.9.0/bin/node /Users/Mali/.nvm/versions/node/v9.9.0/bin/yarn rebuild
+  /Users/Mali/.nvm/versions/node/v9.9.0/bin/node /Users/Mali/.nvm/versions/node/v9.9.0/bin/yarn run test
 
 PATH: 
   /Users/Mali/.nvm/versions/node/v9.9.0/bin:./node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -4551,7 +4551,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.7.1.tgz#f84075c0ee085594d3566e1d6454207f126411b3"
 
 Trace: 
-  Error: Command "rebuild" not found.
+  Error: Command "test" not found.
       at new MessageError (/Users/Mali/.nvm/versions/node/v9.9.0/lib/node_modules/yarn/lib/cli.js:186:110)
       at /Users/Mali/.nvm/versions/node/v9.9.0/lib/node_modules/yarn/lib/cli.js:87307:17
       at Generator.next (<anonymous>)
