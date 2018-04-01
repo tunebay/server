@@ -1,4 +1,5 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Playlist } from './Playlist';
 
 /*
   Column type reference
@@ -33,6 +34,13 @@ export class User extends BaseEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
+
+  // Relations
+
+  @OneToMany(type => Playlist, playlist => playlist.user)
+  playlists: Playlist[];
+
+  // Methods
 
   static findByUsername(username: string) {
     return this.createQueryBuilder('user')

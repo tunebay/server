@@ -1,4 +1,5 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { User } from './User';
 
 /*
   Column type reference
@@ -33,4 +34,12 @@ export class Playlist extends BaseEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
+
+  // Relations
+
+  @Column('integer', { nullable: false })
+  userId: number;
+
+  @ManyToOne(type => User, user => user.playlists)
+  user: User;
 }
