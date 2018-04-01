@@ -1,6 +1,7 @@
 // import formatErrors from '../lib/formatErrors';
 import { ResolverMap } from '../@types';
 import { User } from '../entity/User';
+import { Playlist } from '../entity/Playlist';
 
 const userResolver: ResolverMap = {
   Query: {
@@ -35,7 +36,7 @@ const userResolver: ResolverMap = {
   },
   User: {
     playlists(parent: { id: string /* ..rest */ }, args, context, info) {
-      return Playlist.findAll({ where: { userId: parent.id } });
+      return Playlist.find({ where: { userId: parent.id } });
     },
   },
 };

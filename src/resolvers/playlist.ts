@@ -1,6 +1,7 @@
 import { ResolverMap } from '../@types';
 import { Playlist } from '../entity/Playlist';
 import { User } from '../entity/User';
+import { Track } from '../entity/Track';
 
 const playlistResolver: ResolverMap = {
   Query: {
@@ -38,7 +39,7 @@ const playlistResolver: ResolverMap = {
       return User.findOneById(userId);
     },
     tracks(parent, args, context, info) {
-      return Track.findAll({ where: { playlistId: parent.id } });
+      return Track.find({ where: { playlistId: parent.id } });
     },
   },
 };

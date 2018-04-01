@@ -1,5 +1,10 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+/*
+  Column type reference
+  https://github.com/typeorm/typeorm/blob/master/src/driver/types/ColumnTypes.ts
+*/
+
 @Entity()
 export class Playlist extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;

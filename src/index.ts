@@ -8,10 +8,6 @@ import express from 'express';
 import { createConnection } from 'typeorm';
 import { User } from './entity/User';
 
-const models = {
-  User,
-};
-
 import schema from './schema';
 
 const PORT = 5000 || process.env.PORT;
@@ -27,7 +23,6 @@ app.use(
   bodyParser.json(),
   graphqlExpress({
     schema,
-    models,
   })
 );
 

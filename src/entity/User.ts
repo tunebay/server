@@ -1,5 +1,10 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+/*
+  Column type reference
+  https://github.com/typeorm/typeorm/blob/master/src/driver/types/ColumnTypes.ts
+*/
+
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
@@ -22,7 +27,12 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
-  @Column('timestamp') createdAt: Date;
+  @Column({
+    type: 'timestamp with time zone',
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: Date;
 
   static findByUsername(username: string) {
     return this.createQueryBuilder('user')
