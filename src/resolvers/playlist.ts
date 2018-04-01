@@ -1,15 +1,15 @@
-import { Context } from '../@types';
+import { ResolverMap } from '../@types';
 
-export default {
+const playlistResolver: ResolverMap = {
   Query: {
-    allPlaylists(parent: any, args: any, { models: { Playlist } }: Context, info: any) {
+    allPlaylists(parent, args, { models: { Playlist } }, info) {
       return Playlist.findAll();
     },
     async getPlaylist(
-      parent: any,
+      parent,
       args: { id: number; username: string; permalink: string },
-      { models: { Playlist, User } }: Context,
-      info: any
+      { models: { Playlist, User } },
+      info
     ) {
       try {
         const { id, username, permalink } = args;
@@ -30,11 +30,13 @@ export default {
     },
   },
   Playlist: {
-    artist({ userId }: any, args: any, { models: { User } }: Context, info: any) {
+    artist({ userId }, args, { models: { User } }, info) {
       return User.findById(userId);
     },
-    tracks(parent: any, args: any, { models: { Track } }: Context, info: any) {
+    tracks(parent, args, { models: { Track } }, info) {
       return Track.findAll({ where: { playlistId: parent.id } });
     },
   },
 };
+
+export default playlistResolver;
