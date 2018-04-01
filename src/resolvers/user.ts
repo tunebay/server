@@ -3,9 +3,10 @@ import { Context } from '../lib/types';
 
 export default {
   Query: {
-    allUsers: (parent: any, args: any, { models: { User } }: Context) =>
-      User.findAll(),
-    getUser: (parent: any, args: any, { models: { User } }: Context) => {
+    allUsers(parent: any, args: any, { models: { User } }: Context, info: any) {
+      return User.findAll();
+    },
+    getUser(parent: any, args: any, { models: { User } }: Context, info: any) {
       try {
         const { id, username } = args;
         return id ? User.findById(id) : User.findOne({ where: { username } });
@@ -15,6 +16,7 @@ export default {
     },
   },
   Mutation: {
+    // TODO:
     // signup: async (parent, args, { models }: Context, info) => {
     //   try {
     //     const user = await models.User.create(args);
@@ -31,7 +33,13 @@ export default {
     // ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
   },
   User: {
-    playlists: (parent: any, args: any, { models: { Playlist } }: Context) =>
-      Playlist.findAll({ where: { userId: parent.id } }),
+    playlists(
+      parent: { id: string /* ..rest */ },
+      args: any,
+      { models: { Playlist } }: Context,
+      info: any
+    ) {
+      return Playlist.findAll({ where: { userId: parent.id } });
+    },
   },
 };

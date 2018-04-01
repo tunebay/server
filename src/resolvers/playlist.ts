@@ -2,11 +2,19 @@ import { Context } from '../lib/types';
 
 export default {
   Query: {
-    allPlaylists: ({}, {}, { models: { Playlist } }: Context) => Playlist.findAll(),
+    allPlaylists(
+      parent: any,
+      args: any,
+      { models: { Playlist } }: Context,
+      info: any
+    ) {
+      return Playlist.findAll();
+    },
     async getPlaylist(
       parent: any,
       args: { id: number; username: string; permalink: string },
-      { models: { Playlist, User } }: Context
+      { models: { Playlist, User } }: Context,
+      info: any
     ) {
       try {
         const { id, username, permalink } = args;
@@ -29,9 +37,11 @@ export default {
     },
   },
   Playlist: {
-    artist: ({ userId }: any, args: any, { models: { User } }: Context) =>
-      User.findById(userId),
-    tracks: (parent: any, args: any, { models: { Track } }: Context) =>
-      Track.findAll({ where: { playlistId: parent.id } }),
+    artist({ userId }: any, args: any, { models: { User } }: Context, info: any) {
+      return User.findById(userId);
+    },
+    tracks(parent: any, args: any, { models: { Track } }: Context, info: any) {
+      return Track.findAll({ where: { playlistId: parent.id } });
+    },
   },
 };
