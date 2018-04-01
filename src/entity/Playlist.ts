@@ -28,10 +28,4 @@ export class Playlist extends BaseEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
-
-  static findByUsername(username: string) {
-    return this.createQueryBuilder('user')
-      .where('user.username = :username', { username })
-      .getOne();
-  }
 }

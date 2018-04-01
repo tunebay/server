@@ -37,31 +37,23 @@ export interface Track {
   createdAt: string;
 }
 
-export interface RegisterResponse {
-  ok: boolean;
-  user: User;
-  errors?: Error[];
-}
+// export interface RegisterResponse {
+//   ok: boolean;
+//   user: User;
+//   errors?: Error[];
+// }
 
-export type LoginResponse = {
-  ok: boolean;
-  errors?: Array<Error>;
-  token: String;
-  refreshToken: string;
-};
+// export type LoginResponse = {
+//   ok: boolean;
+//   errors?: Array<Error>;
+//   token: String;
+//   refreshToken: string;
+// };
 
 export type Error = {
   path: string;
   message: string;
 };
-
-// export interface Models {
-//   User: Model<any, any>;
-//   Playlist: Model<any, any>;
-//   Track: Model<any, any>;
-//   // index signature lets typescript know that this object cant be accessed like this
-//   [key: string]: Model<any, any>;
-// }
 
 type Context = {
   user: { id: string };
