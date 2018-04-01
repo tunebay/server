@@ -1,5 +1,3 @@
-import { Model, Sequelize, SequelizeStatic } from 'sequelize';
-
 export interface User {
   avatar?: string;
   bio?: string;
@@ -57,17 +55,16 @@ export type Error = {
   message: string;
 };
 
-export interface Models {
-  User: Model<any, any>;
-  Playlist: Model<any, any>;
-  Track: Model<any, any>;
-  // index signature lets typescript know that this object cant be accessed like this
-  [key: string]: Model<any, any>;
-}
+// export interface Models {
+//   User: Model<any, any>;
+//   Playlist: Model<any, any>;
+//   Track: Model<any, any>;
+//   // index signature lets typescript know that this object cant be accessed like this
+//   [key: string]: Model<any, any>;
+// }
 
 type Context = {
   user: { id: string };
-  models: Models;
 };
 
 export type Resolver = (parent: any, args: any, context: Context, info: any) => any;

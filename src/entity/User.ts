@@ -23,4 +23,10 @@ export class User extends BaseEntity {
   password: string;
 
   @Column('timestamp') createdAt: Date;
+
+  static findByUsername(username: string) {
+    return this.createQueryBuilder('user')
+      .where('user.username = :username', { username })
+      .getOne();
+  }
 }

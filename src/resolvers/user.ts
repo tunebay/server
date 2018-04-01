@@ -1,15 +1,16 @@
 // import formatErrors from '../lib/formatErrors';
 import { ResolverMap } from '../@types';
+import { User } from '../entity/User';
 
 const userResolver: ResolverMap = {
   Query: {
-    allUsers(parent, args, { models: { User } }, info) {
-      return User.findAll();
+    allUsers(parent, args, context, info) {
+      return User.find();
     },
-    getUser(parent, args, { models: { User } }, info) {
+    getUser(parent, args, context, info) {
       try {
         const { id, username } = args;
-        return id ? User.findById(id) : User.findOne({ where: { username } });
+        return id ? User.findOneById(id) : User.findByUsername(username);
       } catch (e) {
         return null;
       }
@@ -33,7 +34,7 @@ const userResolver: ResolverMap = {
     // ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
   },
   User: {
-    playlists(parent: { id: string /* ..rest */ }, args, { models: { Playlist } }, info) {
+    playlists(parent: { id: string /* ..rest */ }, args, context, info) {
       return Playlist.findAll({ where: { userId: parent.id } });
     },
   },

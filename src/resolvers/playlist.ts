@@ -2,7 +2,7 @@ import { ResolverMap } from '../@types';
 
 const playlistResolver: ResolverMap = {
   Query: {
-    allPlaylists(parent, args, { models: { Playlist } }, info) {
+    allPlaylists(parent, args, context, info) {
       return Playlist.findAll();
     },
     async getPlaylist(
