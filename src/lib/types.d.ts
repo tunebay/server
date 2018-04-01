@@ -1,4 +1,4 @@
-import { Model } from 'sequelize';
+import { Model, Sequelize, SequelizeStatic } from 'sequelize';
 
 export interface User {
   avatar?: string;
@@ -61,8 +61,8 @@ export interface Models {
   User: Model<any, any>;
   Playlist: Model<any, any>;
   Track: Model<any, any>;
-  Sequelize: Model<any, any>;
-  sequelize: Model<any, any>;
+  // index signature lets typescript know that this object cant be accessed like this
+  [key: string]: Model<any, any>;
 }
 
 export interface Context {

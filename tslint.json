@@ -25,7 +25,6 @@
     "strict-type-predicates": true,
     "deprecation": true,
     "await-promise": true,
-    "array-type": true,
     "arrow-parens": false,
     "no-shadowed-variable": [
       true,

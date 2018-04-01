@@ -1,5 +1,7 @@
 import path from 'path';
-import Sequelize from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
+
+import { Models } from '../../lib/types';
 
 import config from '../config/config';
 
@@ -12,18 +14,16 @@ const sequelize = new Sequelize(
   config[env]
 );
 
-const models = {
-  User: sequelize.import(path.join(__dirname, './user')),
-  Playlist: sequelize.import(path.join(__dirname, './playlist')),
-  Track: sequelize.import(path.join(__dirname, './track')),
-
-  sequelize,
-  Sequelize,
+const models: Models = {
+  User: sequelize.import(path.join(__dirname, './user')) as Model<any, any>,
+  Playlist: sequelize.import(path.join(__dirname, './playlist')) as Model<any, any>,
+  Track: sequelize.import(path.join(__dirname, './track')) as Model<any, any>,
 };
 
 Object.keys(models).forEach(modelName => {
-  if ('associate' in models[modelName]) {
-    models[modelName].associate(models);
+  const model = models[modelName];
+  if ('associate' in model && model.associate) {
+    model.associate(models);
   }
 });
 

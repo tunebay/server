@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { DataTypes, Sequelize } from 'sequelize';
+import { DataTypes, Sequelize, Model } from 'sequelize';
 
 import reservedUsernames from '../../lib/reservedUsernames';
 
