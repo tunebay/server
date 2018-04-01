@@ -1,22 +1,26 @@
 import { ResolverMap } from '../@types';
+import { Playlist } from '../entity/Playlist';
+import { User } from '../entity/User';
 
 const playlistResolver: ResolverMap = {
   Query: {
     allPlaylists(parent, args, context, info) {
-      return Playlist.findAll();
+      return Playlist.find();
     },
     async getPlaylist(
       parent,
       args: { id: number; username: string; permalink: string },
-      { models: { Playlist, User } },
+      context,
       info
     ) {
       try {
         const { id, username, permalink } = args;
-        if (id) return Playlist.findById(id);
+        if (id) return Playlist.findOneById(id);
 
         if (!username || !permalink) {
-          throw new Error('You must porvide either username & permalink or playlidId');
+          throw new Error(
+            'You must porvide either both a username and permalink or a playlidId'
+          );
         }
 
         const user = await User.findOne({ where: { username } });
@@ -30,10 +34,10 @@ const playlistResolver: ResolverMap = {
     },
   },
   Playlist: {
-    artist({ userId }, args, { models: { User } }, info) {
-      return User.findById(userId);
+    artist({ userId }, args, context, info) {
+      return User.findOneById(userId);
     },
-    tracks(parent, args, { models: { Track } }, info) {
+    tracks(parent, args, context, info) {
       return Track.findAll({ where: { playlistId: parent.id } });
     },
   },
