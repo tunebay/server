@@ -1,13 +1,8 @@
-import { Context } from '../lib/types';
+import { Context } from '../@types';
 
 export default {
   Query: {
-    allPlaylists(
-      parent: any,
-      args: any,
-      { models: { Playlist } }: Context,
-      info: any
-    ) {
+    allPlaylists(parent: any, args: any, { models: { Playlist } }: Context, info: any) {
       return Playlist.findAll();
     },
     async getPlaylist(
@@ -21,9 +16,7 @@ export default {
         if (id) return Playlist.findById(id);
 
         if (!username || !permalink) {
-          throw new Error(
-            'You must porvide either username & permalink or playlidId'
-          );
+          throw new Error('You must porvide either username & permalink or playlidId');
         }
 
         const user = await User.findOne({ where: { username } });

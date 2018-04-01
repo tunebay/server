@@ -21,6 +21,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-3": "^6.24.1",
     "nodemon": "^1.12.5",
+    "prettier": "^1.11.1",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.10.0",

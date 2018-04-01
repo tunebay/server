@@ -1,7 +1,7 @@
 import path from 'path';
 import Sequelize, { Model } from 'sequelize';
 
-import { Models } from '../../lib/types';
+import { Models } from '../../@types';
 
 import config from '../config/config';
 
