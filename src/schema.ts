@@ -1,8 +1,7 @@
-// @flow
 import path from 'path';
 
-import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { makeExecutableSchema } from 'graphql-tools';
+import { fileLoader, mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './types')));
 
@@ -13,4 +12,4 @@ const schema = {
   resolvers,
 };
 
-module.exports = makeExecutableSchema(schema);
+export default makeExecutableSchema(schema);

@@ -1,32 +1,33 @@
-// @flow
-export default (sequelize: any, DataTypes: any) => {
+import { DataTypes, Sequelize } from 'sequelize';
+
+export default (sequelize: Sequelize, dataTypes: DataTypes) => {
   const Track = sequelize.define(
     'track',
     {
       title: {
-        type: DataTypes.STRING,
+        type: dataTypes.STRING,
         allowNull: false,
       },
       price: {
-        type: DataTypes.FLOAT,
+        type: dataTypes.FLOAT,
         validate: { isFloat: true },
       },
       playlistPosition: {
-        type: DataTypes.INTEGER,
+        type: dataTypes.INTEGER,
         allowNull: false,
         field: 'playlist_position',
         validate: { isInt: true },
       },
-      duration: { type: DataTypes.INTEGER },
+      duration: { type: dataTypes.INTEGER },
 
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: dataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         field: 'created_at',
       },
     },
-    { timestamps: false },
+    { timestamps: false }
   );
 
   Track.associate = models => {

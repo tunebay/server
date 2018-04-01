@@ -1,4 +1,21 @@
-module.exports = {
+interface Config {
+  development: Option;
+  test: Option;
+  production: Option;
+  // index signature
+  [key: string]: Option;
+}
+
+interface Option {
+  username: string;
+  password: string;
+  database: string;
+  host: string;
+  dialect: string;
+  define: { underscored: boolean };
+}
+
+const config: Config = {
   development: {
     username: 'postgres',
     password: 'postgres',
@@ -20,13 +37,15 @@ module.exports = {
     },
   },
   production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    username: process.env.DB_USER as string,
+    password: process.env.DB_PASSWORD as string,
     database: 'database_production',
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOST as string,
     dialect: 'postgres',
     define: {
       underscored: true,
     },
   },
 };
+
+export default config;

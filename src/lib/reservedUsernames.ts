@@ -1,5 +1,4 @@
-// @flow
-const reservedUsernames: Array<string> = [
+const reservedUsernames: string[] = [
   'about',
   'account',
   'activate',
