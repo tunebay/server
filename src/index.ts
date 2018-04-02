@@ -6,7 +6,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import { createConnection } from 'typeorm';
-import { User } from './entity/User';
 
 import schema from './schema';
 
