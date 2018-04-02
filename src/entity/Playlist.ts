@@ -1,5 +1,13 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { User } from './User';
+import { Track } from './Track';
 
 /*
   Column type reference
@@ -42,4 +50,7 @@ export class Playlist extends BaseEntity {
 
   @ManyToOne(type => User, user => user.playlists)
   user: User;
+
+  @OneToMany(type => Track, track => track.playlist)
+  tracks: Track[];
 }

@@ -6,7 +6,9 @@
    "license": "MIT",
    "scripts": {
       "dev": "nodemon --exec ts-node src/index.ts",
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "seed:all": "ts-node src/seed/index.ts seed",
+      "seed:undo": "ts-node src/seed/index.ts undo"
    },
    "devDependencies": {
       "@types/bcrypt": "^1.0.0",

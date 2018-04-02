@@ -1,4 +1,5 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Playlist } from './Playlist';
 
 /*
   Column type reference
@@ -27,4 +28,12 @@ export class Track extends BaseEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
+
+  // Relations
+
+  @Column('integer', { nullable: false })
+  playlistId: number;
+
+  @ManyToOne(type => Playlist, playlist => playlist.tracks)
+  playlist: Playlist;
 }

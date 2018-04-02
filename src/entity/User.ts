@@ -13,6 +13,9 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   bio: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  coverPhoto: string;
+
   @Column({ type: 'varchar', nullable: false })
   name: string;
 
