@@ -1,14 +1,14 @@
 // import formatErrors from '../lib/formatErrors';
 import { ResolverMap } from '../@types';
-import { User } from '../entity/User';
-import { Playlist } from '../entity/Playlist';
+// import { User } from '../entity/User';
+// import { Playlist } from '../entity/Playlist';
 
 const userResolver: ResolverMap = {
   Query: {
-    allUsers(parent, args, context, info) {
+    allUsers(parent, args, { models: { User } }, info) {
       return User.find();
     },
-    getUser(parent, args, context, info) {
+    getUser(parent, args, { models: { User } }, info) {
       try {
         const { id, username } = args;
         return id ? User.findOneById(id) : User.findByUsername(username);
@@ -18,7 +18,7 @@ const userResolver: ResolverMap = {
     },
   },
   User: {
-    playlists(parent: { id: string /* ..rest */ }, args, context, info) {
+    playlists(parent: { id: string }, args, { models: { Playlist } }, info) {
       return Playlist.find({ where: { userId: parent.id } });
     },
   },
