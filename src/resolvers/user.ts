@@ -1,45 +1,27 @@
 // import formatErrors from '../lib/formatErrors';
-import { Context } from '../@types';
+import { ResolverMap } from '../@types';
+// import { User } from '../entity/User';
+// import { Playlist } from '../entity/Playlist';
 
-export default {
+const userResolver: ResolverMap = {
   Query: {
-    allUsers(parent: any, args: any, { models: { User } }: Context, info: any) {
-      return User.findAll();
+    allUsers(parent, args, { models: { User } }, info) {
+      return User.find();
     },
-    getUser(parent: any, args: any, { models: { User } }: Context, info: any) {
+    getUser(parent, args, { models: { User } }, info) {
       try {
         const { id, username } = args;
-        return id ? User.findById(id) : User.findOne({ where: { username } });
+        return id ? User.findOneById(id) : User.findByUsername(username);
       } catch (e) {
         return null;
       }
     },
   },
-  Mutation: {
-    // TODO:
-    // signup: async (parent, args, { models }: Context, info) => {
-    //   try {
-    //     const user = await models.User.create(args);
-    //     return { ok: true, user };
-    //   } catch (e) {
-    //     return { ok: false, errors: formatErrors(e, models) };
-    //   }
-    // },
-    // login: async (
-    //   parent,
-    //   { emailOrUsername, password },
-    //   { models, jwtSecret, jwtRefreshSecret }: Context,
-    //   info
-    // ) => tryLogin(emailOrUsername, password, models, jwtSecret, jwtRefreshSecret),
-  },
   User: {
-    playlists(
-      parent: { id: string /* ..rest */ },
-      args: any,
-      { models: { Playlist } }: Context,
-      info: any
-    ) {
-      return Playlist.findAll({ where: { userId: parent.id } });
+    playlists(parent: { id: string }, args, { models: { Playlist } }, info) {
+      return Playlist.find({ where: { userId: parent.id } });
     },
   },
 };
+
+export default userResolver;

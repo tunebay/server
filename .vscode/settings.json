@@ -1,4 +1,5 @@
 {
   "editor.tabSize": 2,
-  "prettier.printWidth": 90
+  "prettier.printWidth": 90,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

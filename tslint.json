@@ -3,22 +3,19 @@
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
-    "import/order": ["error", { "newlines-between": "always-and-inside-groups" }],
-    "import/default": "off",
+    "member-ordering": true,
     "import-spacing": true,
-    "ordered-imports": true,
-    "no-undef": "error",
+    "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-undef-init": "error",
-    "no-console": false,
-    "no-param-reassign": "off",
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "interface-name": false,
     "curly": false,
+    "member-access": false,
     "no-var-requires": false,
     "space-before-function-paren": false,
-    "object-curly-newline": "off",
-    "no-underscore-dangle": "off",
     "prefer-object-spread": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
     "prefer-const": true,
     "prefer-for-of": true,
     "prefer-method-signature": true,
@@ -38,21 +35,8 @@
         "typeParameter": false
       }
     ],
-    "func-names": "off",
-    "semicolon": true,
-    "no-unused-expressions": [
-      "error",
-      {
-        "allowShortCircuit": true,
-        "allowTernary": true,
-        "allowTaggedTemplates": true
-      }
-    ],
-    "no-unused-vars": [
-      "error",
-      { "vars": "all", "args": "all", "ignoreRestSiblings": true }
-    ],
-    "function-paren-newline": "off"
+    "comment-format": [true, "check-space"],
+    "semicolon": true
   },
   "rulesDirectory": []
 }

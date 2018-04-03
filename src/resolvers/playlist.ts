@@ -1,22 +1,27 @@
-import { Context } from '../@types';
+import { ResolverMap } from '../@types';
+import { Playlist } from '../entity/Playlist';
+import { User } from '../entity/User';
+import { Track } from '../entity/Track';
 
-export default {
+const playlistResolver: ResolverMap = {
   Query: {
-    allPlaylists(parent: any, args: any, { models: { Playlist } }: Context, info: any) {
-      return Playlist.findAll();
+    allPlaylists(parent, args, context, info) {
+      return Playlist.find();
     },
     async getPlaylist(
-      parent: any,
+      parent,
       args: { id: number; username: string; permalink: string },
-      { models: { Playlist, User } }: Context,
-      info: any
+      context,
+      info
     ) {
       try {
         const { id, username, permalink } = args;
-        if (id) return Playlist.findById(id);
+        if (id) return Playlist.findOneById(id);
 
         if (!username || !permalink) {
-          throw new Error('You must porvide either username & permalink or playlidId');
+          throw new Error(
+            'You must porvide either both a username and permalink or a playlidId'
+          );
         }
 
         const user = await User.findOne({ where: { username } });
@@ -30,11 +35,13 @@ export default {
     },
   },
   Playlist: {
-    artist({ userId }: any, args: any, { models: { User } }: Context, info: any) {
-      return User.findById(userId);
+    artist({ userId }, args, context, info) {
+      return User.findOneById(userId);
     },
-    tracks(parent: any, args: any, { models: { Track } }: Context, info: any) {
-      return Track.findAll({ where: { playlistId: parent.id } });
+    tracks(parent, args, context, info) {
+      return Track.find({ where: { playlistId: parent.id } });
     },
   },
 };
+
+export default playlistResolver;
