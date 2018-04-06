@@ -41,7 +41,8 @@ app.use(
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 
-createConnection().then(() => {
+createConnection().then(async con => {
+  await con.runMigrations();
   app.listen(PORT, () => {
     console.log('Listning on port', PORT);
   });
