@@ -1,9 +1,10 @@
 import { User } from '../entity/User';
 import { Playlist } from '../entity/Playlist';
 import { Track } from '../entity/Track';
+import { Request } from 'express';
 
 export type Context = {
-  user: { id: number };
+  req?: Request;
   models: {
     User: typeof User;
     Playlist: typeof Playlist;
@@ -22,6 +23,11 @@ export interface ResolverMap {
 export type Error = {
   path: string;
   message: string;
+};
+
+export type SessionRequest = Request & {
+  session?: Express.Session;
+  sessionID?: string;
 };
 
 // export interface RegisterResponse {
