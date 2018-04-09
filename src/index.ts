@@ -11,7 +11,7 @@ import schema from './schema';
 import { User } from './entity/User';
 import { Playlist } from './entity/Playlist';
 import { Track } from './entity/Track';
-import { Context } from 'vm';
+import { Context } from './@types/index';
 
 const PORT = 5000 || process.env.PORT;
 const app = express();
