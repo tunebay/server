@@ -15,7 +15,6 @@
     "space-before-function-paren": false,
     "prefer-object-spread": true,
     "no-unused-expression": true,
-    "no-unused-variable": true,
     "prefer-const": true,
     "prefer-for-of": true,
     "prefer-method-signature": true,
