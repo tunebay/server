@@ -1,7 +1,4 @@
-// import formatErrors from '../lib/formatErrors';
 import { ResolverMap } from '../@types';
-// import { User } from '../entity/User';
-// import { Playlist } from '../entity/Playlist';
 
 const userResolver: ResolverMap = {
   Query: {
