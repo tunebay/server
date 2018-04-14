@@ -44,7 +44,7 @@ app.use(
 app.use(
   graphqlEndpoint,
   bodyParser.json(),
-  SessionLogger(),
+  sessionLogger(),
   graphqlExpress(req => ({
     schema,
     context: getContext(req as SessionRequest),
@@ -64,7 +64,7 @@ function getContext(req: SessionRequest): Context {
   };
 }
 
-function SessionLogger(): express.RequestHandler {
+function sessionLogger(): express.RequestHandler {
   return (req, _, next) => {
     console.log('Session:', req.session);
     return next();
