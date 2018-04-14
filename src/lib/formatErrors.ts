@@ -1,9 +1,10 @@
-// TODO type this
-// const formatErrors = (e: any, models: any) => {
-//   if (e instanceof models.sequelize.ValidationError) {
-//     return e.errors.map((x: any) => (({ path, message }) => ({ path, message }))(x));
-//   }
-//   return [{ path: 'unknown', message: 'Something went wrong' }];
-// };
+import { QueryFailedError } from 'typeorm';
 
-// export default formatErrors;
+const formatErrors = (e: any) => {
+  if (e instanceof QueryFailedError) {
+    return [{ message: e.message, name: e.name, stack: e.stack }];
+  }
+  return [{ name: 'unknown', message: 'Something went wrong' }];
+};
+
+export default formatErrors;

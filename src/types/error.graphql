@@ -1,4 +1,5 @@
 type Error {
-  path: String!
-  message: String
+  name: String!
+  message: String!
+  stack: String
 }

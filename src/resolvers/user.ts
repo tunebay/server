@@ -1,5 +1,6 @@
 import { ResolverMap, AuthResponse } from '../@types';
 import bycrpt from 'bcrypt';
+import formatErrors from '../lib/formatErrors';
 
 const userResolver: ResolverMap = {
   Query: {
@@ -35,10 +36,9 @@ const userResolver: ResolverMap = {
           user,
         };
       } catch (error) {
-        console.log('ERROR', error);
         return {
           ok: false,
-          errors: [error],
+          errors: formatErrors(error),
         };
       }
     },
@@ -67,7 +67,7 @@ const userResolver: ResolverMap = {
       } catch (error) {
         return {
           ok: false,
-          errors: [error],
+          errors: formatErrors(error),
         };
       }
     },

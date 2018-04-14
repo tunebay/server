@@ -21,8 +21,9 @@ export interface ResolverMap {
 }
 
 export type Error = {
-  path: string;
+  name: string;
   message: string;
+  stack?: string;
 };
 
 export type SessionRequest = Request & {
