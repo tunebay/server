@@ -30,7 +30,7 @@ export type SessionRequest = Request & {
   sessionID?: string;
 };
 
-export interface RegisterResponse {
+export interface AuthResponse {
   ok: boolean;
   user?: User;
   errors?: Error[];

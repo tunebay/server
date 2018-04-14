@@ -28,10 +28,11 @@ type Mutation {
     # could get from provider e.g google or facebook
     coverPhoto: String
     profilePicture: String
-  ): RegisterResponse!
+  ): AuthResponse!
+  login(emailOrUsername: String!, password: String!): AuthResponse!
 }
 
-type RegisterResponse {
+type AuthResponse {
   ok: Boolean!
   user: User
   errors: [Error!]

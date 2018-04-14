@@ -27,6 +27,7 @@ app.use(
 ); // TODO
 
 app.use(
+  // TODO Redis store
   session({
     name: 'tbsid',
     secret: process.env.SESSION_SECRET as string,

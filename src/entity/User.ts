@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-
 import {
   BaseEntity,
   Entity,
@@ -8,6 +7,7 @@ import {
   OneToMany,
   BeforeInsert,
 } from 'typeorm';
+
 import { Playlist } from './Playlist';
 
 /*
