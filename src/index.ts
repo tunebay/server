@@ -14,7 +14,7 @@ import { Playlist } from './entity/Playlist';
 import { Track } from './entity/Track';
 import { Context, SessionRequest } from './@types';
 
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 const graphqlEndpoint = '/graphql';
