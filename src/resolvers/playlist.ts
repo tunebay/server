@@ -1,17 +1,14 @@
 import { ResolverMap } from '../@types';
-import { Playlist } from '../entity/Playlist';
-import { User } from '../entity/User';
-import { Track } from '../entity/Track';
 
 const playlistResolver: ResolverMap = {
   Query: {
-    allPlaylists(parent, args, context, info) {
+    allPlaylists(parent, args, { models: { Playlist } }, info) {
       return Playlist.find();
     },
     async getPlaylist(
       parent,
       args: { id: number; username: string; permalink: string },
-      context,
+      { models: { Playlist, User } },
       info
     ) {
       try {
@@ -35,10 +32,10 @@ const playlistResolver: ResolverMap = {
     },
   },
   Playlist: {
-    artist({ userId }, args, context, info) {
+    artist({ userId }, args, { models: { User } }, info) {
       return User.findOneById(userId);
     },
-    tracks(parent, args, context, info) {
+    tracks(parent, args, { models: { Track } }, info) {
       return Track.find({ where: { playlistId: parent.id } });
     },
   },
