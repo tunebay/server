@@ -1,4 +1,13 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import bcrypt from 'bcrypt';
+
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  BeforeInsert,
+} from 'typeorm';
 import { Playlist } from './Playlist';
 
 /*
@@ -42,6 +51,14 @@ export class User extends BaseEntity {
 
   @OneToMany(type => Playlist, playlist => playlist.user)
   playlists: Playlist[];
+
+  // Hooks
+
+  @BeforeInsert()
+  async hashPassword() {
+    const password = await bcrypt.hash(this.password, 10);
+    this.password = password;
+  }
 
   // Methods
 
