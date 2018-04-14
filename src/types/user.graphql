@@ -14,6 +14,7 @@ type User {
 type Query {
   getUser(id: Int, username: String): User
   allUsers: [User]!
+  currentUser: User
 }
 
 type Mutation {
@@ -23,23 +24,15 @@ type Mutation {
     username: String!
     password: String!
     name: String!
-    # could get from provider
+
+    # could get from provider e.g google or facebook
     coverPhoto: String
     profilePicture: String
   ): RegisterResponse!
-
-  login(emailOrUsername: String!, password: String!): LoginResponse!
 }
 
 type RegisterResponse {
   ok: Boolean!
   user: User
   errors: [Error!]
-}
-
-type LoginResponse {
-  ok: Boolean!
-  errors: [Error!]
-  token: String
-  refreshToken: String
 }

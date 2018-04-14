@@ -19,24 +19,6 @@ const app = express();
 
 const graphqlEndpoint = '/graphql';
 
-function getContext(req?: SessionRequest): Context {
-  return {
-    req,
-    models: {
-      User,
-      Playlist,
-      Track,
-    },
-  };
-}
-
-function SessionLogger(): express.RequestHandler {
-  return (req, _, next) => {
-    console.log(req.session);
-    return next();
-  };
-}
-
 app.use(
   cors({
     credentials: true,
@@ -65,11 +47,29 @@ app.use(
   SessionLogger(),
   graphqlExpress(req => ({
     schema,
-    context: getContext(req),
+    context: getContext(req as SessionRequest),
   }))
 );
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
+
+function getContext(req: SessionRequest): Context {
+  return {
+    req,
+    models: {
+      User,
+      Playlist,
+      Track,
+    },
+  };
+}
+
+function SessionLogger(): express.RequestHandler {
+  return (req, _, next) => {
+    console.log('Session:', req.session);
+    return next();
+  };
+}
 
 createConnection().then(async con => {
   await con.runMigrations();

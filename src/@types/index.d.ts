@@ -4,7 +4,7 @@ import { Track } from '../entity/Track';
 import { Request } from 'express';
 
 export type Context = {
-  req?: Request;
+  req: SessionRequest;
   models: {
     User: typeof User;
     Playlist: typeof Playlist;
@@ -30,15 +30,8 @@ export type SessionRequest = Request & {
   sessionID?: string;
 };
 
-// export interface RegisterResponse {
-//   ok: boolean;
-//   user: User;
-//   errors?: Error[];
-// }
-
-// export type LoginResponse = {
-//   ok: boolean;
-//   errors?: Array<Error>;
-//   token: String;
-//   refreshToken: string;
-// };
+export interface RegisterResponse {
+  ok: boolean;
+  user?: User;
+  errors?: Error[];
+}
