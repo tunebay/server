@@ -1,6 +1,7 @@
 import { ResolverMap, AuthResponse } from '../@types';
 import bycrpt from 'bcrypt';
 import formatErrors from '../lib/formatErrors';
+import reservedUsernames from '../lib/reservedUsernames';
 
 const userResolver: ResolverMap = {
   Query: {
@@ -26,11 +27,16 @@ const userResolver: ResolverMap = {
   Mutation: {
     async signup(parent, args, { models: { User }, req }, info): Promise<AuthResponse> {
       try {
+        if (reservedUsernames.includes(args.username))
+          throw new Error('Username reserved');
+
         const user = User.create(args);
         await user.save();
+
         if (req.session) {
           req.session.userId = user.id;
         }
+
         return {
           ok: true,
           user,
